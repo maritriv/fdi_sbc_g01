@@ -1,3 +1,7 @@
 ## Práctica 2 - SBC
-aaaa
+
+#  Estudiantes:
+  Marina Triviño de las Heras
+  Pablo Alonso Romero
+
 
