@@ -1,3 +1,3 @@
-#Práctica 2 - SBC
+## Práctica 2 - SBC
 aaaa
 
