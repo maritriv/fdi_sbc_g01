@@ -64,11 +64,9 @@ class MotorInferencia:
         return grado1 + grado2 - (grado1 * grado2)
 
     def backward_chain(self, consulta):
-        # Buscar el hecho directo
         if consulta in self.base.hechos:
             return self.base.hechos[consulta]
 
-        # Buscar reglas que tengan ese consecuente
         for regla in self.base.reglas:
             if regla.cons == consulta:
                 grados_antecedentes = []
@@ -78,7 +76,6 @@ class MotorInferencia:
                         return None
                     grados_antecedentes.append(resultado)
 
-                # Aplicar AND difuso a todos los antecedentes
                 grado_final = self.and_difuso(*grados_antecedentes) * regla.grado
                 return grado_final
         return None
