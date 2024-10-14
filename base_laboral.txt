@@ -1,0 +1,25 @@
+# Base de conocimiento para una empresa de adquisición de talento
+
+## Trabajos
+desarrollador :- programacion, analisis
+ing_frontend :- web, programacion [0.8]
+ing_frontend :- web, soft_skills [0.6]
+ing_backend :- php, linux
+project_manager :- analisis, soft_skills, desarrollador [0.75]
+QA_tester :- analisis
+asesor_fiscal :- analisis, economia, soft_skills
+orientador :- soft_skills, psicologia
+
+## Habilidades
+matematicas :- fisica, programacion [0.8]
+soft_skills :- voluntariado [0.7]
+soft_skills :- psicologia [0.9]
+web :- css, html [0.7]
+web :- html, servidor [0.7]
+servidor :- linux
+servidor :- php [0.75]
+analisis :- economia [0.8]
+analisis :- matematicas
+programacion :- C
+programacion :- python [0.6]
+psicologia :- profesor [0.7]

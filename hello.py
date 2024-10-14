@@ -1,4 +1,4 @@
-import click
+import click # type: ignore
 from pathlib import Path
 
 class Regla:
