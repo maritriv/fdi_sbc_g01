@@ -1,29 +1,35 @@
-import click # type: ignore
+import click
 from pathlib import Path
 
+"Construcción de la clase regla"
 class Regla:
     def __init__(self, cons, antecedentes, grado=1.0):
-        self.cons = cons.strip()
-        self.antecedentes = [antecedente.strip() for antecedente in antecedentes]
-        self.grado = float(grado)
+        self.cons = cons.strip()  # La conclusión de la regla, eliminando espacios
+        self.antecedentes = [antecedente.strip() for antecedente in antecedentes]  # Lista de antecedentes
+        self.grado = float(grado)  # El grado de certeza de la regla
 
     def __repr__(self):
+        # Formato para representar una regla como "conclusión :- antecedentes [grado]"
         antecedentes_str = ", ".join(self.antecedentes)
         return f"{self.cons} :- {antecedentes_str} [{self.grado}]"
 
 
 class BaseConocimiento:
     def __init__(self):
-        self.reglas = []
-        self.hechos = {}
+        self.reglas = []  # Lista de reglas
+        self.hechos = {}  # Diccionario de hechos con su grado de certeza
 
     def cargar_desde_archivo(self, filepath):
+        #Carga reglas y hechos desde un archivo de texto.
         fichero = Path(filepath)
         texto = fichero.read_text()
+
         for line in texto.split("\n"):
             line = line.strip()
+            # Ignorar comentarios y líneas vacías
             if line.startswith("#") or not line:
                 continue
+            # Cargar una regla
             if ":-" in line:
                 cons, resto = line.split(" :- ")
                 if "[" in resto:
@@ -35,6 +41,7 @@ class BaseConocimiento:
                 antecedentes = antecedentes.split(",")
                 regla = Regla(cons, antecedentes, grado)
                 self.reglas.append(regla)
+            # Cargar un hecho
             else:
                 if "[" in line:
                     hecho, grado = line.split("[")
@@ -45,211 +52,122 @@ class BaseConocimiento:
                 self.hechos[hecho.strip()] = float(grado)
 
     def imprimir(self):
+        #Imprime todas las reglas y hechos en la base de conocimientos.
+        print("Reglas:")
         for regla in self.reglas:
             print(regla)
+        print("\n")
+
+        print("Hechos:")
         for hecho, grado in self.hechos.items():
             print(f"{hecho} [{grado}]")
+        print("\n")
 
     def agregar_hecho(self, hecho, grado):
-        """Agrega o actualiza un hecho en la base de conocimientos."""
-        self.hechos[hecho] = grado
-        print(f"Hecho '{hecho}' agregado/actualizado con grado {grado}")
-
-
-import click # type: ignore
-from pathlib import Path
-
-class Regla:
-    def __init__(self, cons, antecedentes, grado=1.0):
-        self.cons = cons.strip()
-        self.antecedentes = [antecedente.strip() for antecedente in antecedentes]
-        self.grado = float(grado)
-
-    def __repr__(self):
-        antecedentes_str = ", ".join(self.antecedentes)
-        return f"{self.cons} :- {antecedentes_str} [{self.grado}]"
-
-
-class BaseConocimiento:
-    def __init__(self):
-        self.reglas = []
-        self.hechos = {}
-
-    def cargar_desde_archivo(self, filepath):
-        fichero = Path(filepath)
-        texto = fichero.read_text()
-        for line in texto.split("\n"):
-            line = line.strip()
-            if line.startswith("#") or not line:
-                continue
-            if ":-" in line:
-                cons, resto = line.split(" :- ")
-                if "[" in resto:
-                    antecedentes, grado = resto.split("[")
-                    grado = grado.rstrip("]")
-                else:
-                    antecedentes = resto
-                    grado = 1.0
-                antecedentes = antecedentes.split(",")
-                regla = Regla(cons, antecedentes, grado)
-                self.reglas.append(regla)
-            else:
-                if "[" in line:
-                    hecho, grado = line.split("[")
-                    grado = grado.rstrip("]")
-                else:
-                    hecho = line
-                    grado = 1.0
-                self.hechos[hecho.strip()] = float(grado)
-
-    def imprimir(self):
-        for regla in self.reglas:
-            print(regla)
-        for hecho, grado in self.hechos.items():
-            print(f"{hecho} [{grado}]")
-
-    def agregar_hecho(self, hecho, grado):
-        """Agrega o actualiza un hecho en la base de conocimientos."""
+        #Agrega o actualiza un hecho en la base de conocimientos.
         self.hechos[hecho] = grado
         print(f"Hecho '{hecho}' agregado/actualizado con grado {grado}")
 
 
 class MotorInferencia:
     def __init__(self, base):
-        self.base = base
+        self.base = base  # Base de conocimientos
         self.reglas_aplicadas = set()  # Para evitar ciclos de reglas
 
     def and_difuso(self, *grados):
-        """ Operador AND difuso utilizando el mínimo """
+        #Operador AND difuso utilizando el mínimo valor.
         return min(grados)
 
     def or_difuso(self, grado1, grado2):
-        """ Operador OR difuso usando inclusión-exclusión """
+        #Operador OR difuso utilizando la fórmula de inclusión-exclusión.
         return grado1 + grado2 - (grado1 * grado2)
 
     def backward_chain(self, consulta, nivel=0):
-        # Imprimir el nivel de recursión y la consulta actual
+        #Encadenamiento hacia atrás para deducir si una consulta es verdadera.
         print(f"{'  ' * nivel}Evaluando: {consulta}")
 
-        # Si la consulta está en los hechos conocidos
+        # Si la consulta es un hecho conocido
         if consulta in self.base.hechos:
             print(f"{'  ' * nivel}Hecho encontrado: {consulta} con grado {self.base.hechos[consulta]}")
             return self.base.hechos[consulta]
 
-        # Verificar si ya hemos aplicado una regla para esta consulta (para evitar ciclos)
+        # Verificar si ya hemos aplicado una regla para esta consulta
         if consulta in self.reglas_aplicadas:
             print(f"{'  ' * nivel}Ciclo detectado en: {consulta}. Omitiendo...")
             return None
 
-        # Marcar esta consulta como aplicada temporalmente
+        # Marcar la consulta como aplicada
         self.reglas_aplicadas.add(consulta)
+        grado_acumulado = None  # Para acumular el grado de certeza
 
-        # Buscar todas las reglas que concluyan la consulta
-        print(f"{'  ' * nivel}Buscando reglas para: {consulta}")
-        grado_acumulado = None
-
+        # Buscar reglas que concluyan en la consulta
         for regla in self.base.reglas:
             if regla.cons == consulta:
                 print(f"{'  ' * nivel}Regla encontrada: {regla}")
                 grados_antecedentes = []
 
-                # Evaluar cada antecedente de la regla
+                # Evaluar los antecedentes de la regla
                 for antecedente in regla.antecedentes:
                     print(f"{'  ' * nivel}Evaluando antecedente: {antecedente}")
-                    resultado = self.backward_chain(antecedente, nivel + 1)  # Aumentar el nivel de recursión
+                    resultado = self.backward_chain(antecedente, nivel + 1)
                     if resultado is None:
                         print(f"{'  ' * nivel}No se pudo resolver el antecedente: {antecedente}")
                         break
                     grados_antecedentes.append(resultado)
                 else:
-                    # Calcular el grado final de certeza usando el AND difuso
+                    # Calcular el grado de certeza de la regla usando AND difuso
                     grado_regla = self.and_difuso(*grados_antecedentes) * regla.grado
-                    print(f"{'  ' * nivel}Grado final para {consulta} con esta regla: {grado_regla} (AND difuso de {grados_antecedentes})")
+                    print(f"{'  ' * nivel}Grado final para {consulta} con esta regla: {grado_regla}")
 
-                    # Acumular el grado utilizando el operador OR difuso
+                    # Acumular el grado usando OR difuso
                     if grado_acumulado is None:
                         grado_acumulado = grado_regla
                     else:
                         grado_acumulado = self.or_difuso(grado_acumulado, grado_regla)
 
-        # Si encontramos algún grado acumulado, lo devolvemos
+        # Retornar el grado acumulado si se encontró algún resultado
         if grado_acumulado is not None:
             print(f"{'  ' * nivel}Grado acumulado para {consulta}: {grado_acumulado}")
-            self.reglas_aplicadas.remove(consulta)  # Limpiamos después de encontrar una solución
+            self.reglas_aplicadas.remove(consulta)
             return grado_acumulado
 
-        # Si no se encuentra ninguna regla o hecho que coincida
+        # Si no se encuentra una regla o hecho para la consulta
         print(f"{'  ' * nivel}No se encontró una regla o hecho para: {consulta}")
-        self.reglas_aplicadas.remove(consulta)  # Limpiar para evitar ciclos en futuras evaluaciones
+        self.reglas_aplicadas.remove(consulta)
         return None
 
 
-
-
 @click.command()
 @click.argument('filepath')
 def main(filepath):
+    #Función principal para ejecutar el sistema experto.
     base = BaseConocimiento()
-    base.cargar_desde_archivo(filepath)
+    base.cargar_desde_archivo(filepath)  # Cargar reglas y hechos desde el archivo
     motor = MotorInferencia(base)
 
+    # Bucle para interactuar con el sistema
     while True:
         consulta = input("> ").strip()
-        if consulta == "print":
+
+        if consulta == "print":  # Comando para imprimir la base de conocimientos
             base.imprimir()
-        elif consulta.endswith("?"):
+
+        elif consulta.endswith("?"):  # Comando para hacer una consulta
             consulta = consulta.rstrip("?")
             resultado = motor.backward_chain(consulta)
             if resultado is None:
                 print("No")
             else:
                 print(f"Sí, con grado de certeza {resultado}")
-        elif consulta.startswith("add "):
-            # Parsear el hecho y el grado de certeza
+
+        elif consulta.startswith("add "):  # Comando para agregar hechos
             try:
                 _, hecho, grado_str = consulta.split()
                 grado = float(grado_str.strip('[]'))
-                # Agregar el hecho a la base de conocimientos
                 base.agregar_hecho(hecho, grado)
             except ValueError:
                 print("Error en el formato. Uso: add <hecho> [grado]")
-        else:
-            print("Comando no reconocido")
 
-
-if __name__ == "__main__":
-    main()
-
-
-
-
-@click.command()
-@click.argument('filepath')
-def main(filepath):
-    base = BaseConocimiento()
-    base.cargar_desde_archivo(filepath)
-    motor = MotorInferencia(base)
-
-    while True:
-        consulta = input("> ").strip()
-        if consulta == "print":
-            base.imprimir()
-        elif consulta.endswith("?"):
-            consulta = consulta.rstrip("?")
-            resultado = motor.backward_chain(consulta)
-            if resultado is None:
-                print("No")
-            else:
-                print(f"Sí, con grado de certeza {resultado}")
-        elif consulta.startswith("add "):
-            # Parsear el hecho y el grado de certeza
-            try:
-                _, hecho, grado_str = consulta.split()
-                grado = float(grado_str.strip('[]'))
-                # Agregar el hecho a la base de conocimientos
-                base.agregar_hecho(hecho, grado)
-            except ValueError:
-                print("Error en el formato. Uso: add <hecho> [grado]")
         else:
             print("Comando no reconocido")
 
