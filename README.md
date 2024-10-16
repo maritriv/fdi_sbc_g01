@@ -21,6 +21,6 @@ Este proyecto requiere **Python 3.6+**. Además, se utiliza la biblioteca `click
 pip install click
 ```
 
-### Autores
+## Autores
 Marina Triviño de las Heras y Pablo Alonso Romero
 
