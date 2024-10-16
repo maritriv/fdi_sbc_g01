@@ -1,5 +1,8 @@
 # Sistema Basado en Reglas con Razonamiento Hacia Atrás y Lógica Difusa
 
+![Uploading imagen.png…]()
+
+
 Este proyecto implementa un sistema basado en reglas (SBC) que utiliza razonamiento hacia atrás, permitiendo realizar consultas sobre hechos en una base de conocimiento con lógica difusa. El sistema puede cargar reglas y hechos desde un archivo de texto y responder a consultas desde la línea de comandos.
 
 ## Características
