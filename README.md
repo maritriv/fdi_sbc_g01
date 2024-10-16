@@ -1,5 +1,7 @@
 # Sistema Basado en Reglas con Razonamiento Hacia Atrás y Lógica Difusa
 
+![imagen](https://github.com/user-attachments/assets/c2fca9cd-598d-45ab-a1ac-1fb38ae7bfbb)
+
 Este proyecto implementa un sistema basado en reglas (SBC) que utiliza razonamiento hacia atrás, permitiendo realizar consultas sobre hechos en una base de conocimiento con lógica difusa. El sistema puede cargar reglas y hechos desde un archivo de texto y responder a consultas desde la línea de comandos.
 
 ## Características
@@ -17,3 +19,9 @@ Este proyecto requiere **Python 3.6+**. Además, se utiliza la biblioteca `click
 
 ```bash
 pip install click
+```
+
+## Autores
+Marina Triviño de las Heras y Pablo Alonso Romero
+
+

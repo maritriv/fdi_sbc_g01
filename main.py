@@ -1,7 +1,7 @@
 import click
 from pathlib import Path
 
-"Construcción de la clase regla"
+#Construcción de la clase regla
 class Regla:
     def __init__(self, cons, antecedentes, grado=1.0):
         self.cons = cons.strip()  # La conclusión de la regla, eliminando espacios
@@ -53,7 +53,7 @@ class BaseConocimiento:
 
     def imprimir(self):
         #Imprime todas las reglas y hechos en la base de conocimientos.
-        print("Reglas:")
+        print("\n", "Reglas:")
         for regla in self.reglas:
             print(regla)
         print("\n")
@@ -66,7 +66,7 @@ class BaseConocimiento:
     def agregar_hecho(self, hecho, grado):
         #Agrega o actualiza un hecho en la base de conocimientos.
         self.hechos[hecho] = grado
-        print(f"Hecho '{hecho}' agregado/actualizado con grado {grado}")
+        print(f"Hecho '{hecho}' agregado con grado {grado}", "\n")
 
 
 class MotorInferencia:
@@ -88,7 +88,7 @@ class MotorInferencia:
 
         # Si la consulta es un hecho conocido
         if consulta in self.base.hechos:
-            print(f"{'  ' * nivel}Hecho encontrado: {consulta} con grado {self.base.hechos[consulta]}")
+            print(f"{'  ' * nivel}Hecho encontrado: {consulta} con grado {self.base.hechos[consulta]}" ,"\n")
             return self.base.hechos[consulta]
 
         # Verificar si ya hemos aplicado una regla para esta consulta
@@ -103,7 +103,7 @@ class MotorInferencia:
         # Buscar reglas que concluyan en la consulta
         for regla in self.base.reglas:
             if regla.cons == consulta:
-                print(f"{'  ' * nivel}Regla encontrada: {regla}")
+                print(f"{'  ' * nivel}Regla encontrada: {regla}", "\n")
                 grados_antecedentes = []
 
                 # Evaluar los antecedentes de la regla
@@ -111,13 +111,13 @@ class MotorInferencia:
                     print(f"{'  ' * nivel}Evaluando antecedente: {antecedente}")
                     resultado = self.backward_chain(antecedente, nivel + 1)
                     if resultado is None:
-                        print(f"{'  ' * nivel}No se pudo resolver el antecedente: {antecedente}")
+                        print(f"{'  ' * nivel}No se pudo resolver el antecedente: {antecedente}", "\n")
                         break
                     grados_antecedentes.append(resultado)
                 else:
                     # Calcular el grado de certeza de la regla usando AND difuso
                     grado_regla = self.and_difuso(*grados_antecedentes) * regla.grado
-                    print(f"{'  ' * nivel}Grado final para {consulta} con esta regla: {grado_regla}")
+                    print(f"{'  ' * nivel}Grado final para {consulta} con esta regla: {round(grado_regla, 2)}")
 
                     # Acumular el grado usando OR difuso
                     if grado_acumulado is None:
@@ -127,7 +127,7 @@ class MotorInferencia:
 
         # Retornar el grado acumulado si se encontró algún resultado
         if grado_acumulado is not None:
-            print(f"{'  ' * nivel}Grado acumulado para {consulta}: {grado_acumulado}")
+            print(f"{'  ' * nivel}Grado acumulado para {consulta}: {round(grado_acumulado, 2)}", "\n")
             self.reglas_aplicadas.remove(consulta)
             return grado_acumulado
 
@@ -154,11 +154,12 @@ def main(filepath):
 
         elif consulta.endswith("?"):  # Comando para hacer una consulta
             consulta = consulta.rstrip("?")
+            print("\n")
             resultado = motor.backward_chain(consulta)
             if resultado is None:
-                print("No")
+                print("\n")
             else:
-                print(f"Sí, con grado de certeza {resultado}")
+                print(f"Sí, con grado de certeza {round(resultado, 2)}")
 
         elif consulta.startswith("add "):  # Comando para agregar hechos
             try:
