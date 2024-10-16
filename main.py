@@ -1,6 +1,10 @@
 import click
 from pathlib import Path
 
+""" 
+Construcción de la clase Regla donde se definen sus atributos;
+conclusión de la regla, lista de antecedentes y grado de certeza 
+"""
 #Construcción de la clase regla
 class Regla:
     def __init__(self, cons, antecedentes, grado=1.0):
@@ -13,7 +17,12 @@ class Regla:
         antecedentes_str = ", ".join(self.antecedentes)
         return f"{self.cons} :- {antecedentes_str} [{self.grado}]"
 
+"""
+Construcción de la clase BaseConocimiento y sus atributos que son 
+lista de reglas y diccionarios de grados de certezas. Incluye la función de la carga del archivo,
+la función de imprimir la base de conocimiento y la funciónn para agregar un hecho a la base.
 
+""" 
 class BaseConocimiento:
     def __init__(self):
         self.reglas = []  # Lista de reglas
@@ -68,6 +77,12 @@ class BaseConocimiento:
         self.hechos[hecho] = grado
         print(f"Hecho '{hecho}' agregado con grado {grado}", "\n")
 
+"""
+Construcción de la clase MotorInferencia y sus atributos. También se definen
+las funciones and_difuso para el mínimo valor, or_difuso utilizando la fórmula de inclusión-exclusión
+y la función principal de backward_chain que realiza todo el algoritmo de encadenamiento hacia atrás.
+
+"""
 
 class MotorInferencia:
     def __init__(self, base):
