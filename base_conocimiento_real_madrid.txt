@@ -1,0 +1,94 @@
+# Base de Conocimiento de un equipo de fútbol
+
+# Definición de jugadores de fútbol
+
+q1:courtois wdt:P31 q1:jugador ;          # Courtois es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:portero .              # juega en la posición de portero
+
+q1:carvajal wdt:P31 q1:jugador ;          # Carvajal es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:defensa .              # juega en la posición de defensa
+
+q1:militao wdt:P31 q1:jugador ;           # Militao es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:defensa .              # juega en la posición de defensa
+   
+q1:vallejo wdt:P31 q1:jugador ;           # Vallejo es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:defensa .              # juega en la posición de defensa
+   
+q1:lucas_vazquez wdt:P31 q1:jugador ;     # Lucas Vázquez es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:defensa .              # juega en la posición de defensa
+
+q1:rudiger wdt:P31 q1:jugador ;           # Rudiger es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:defensa .              # juega en la posición de defensa
+
+q1:mendy wdt:P31 q1:jugador ;             # Mendy es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:defensa .              # juega en la posición de defensa
+   
+q1:bellingham wdt:P31 q1:jugador ;        # Bellingham es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:mediocampista .        # juega en la posición de mediocampista
+
+q1:modric wdt:P31 q1:jugador ;            # Modric es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:mediocampista .        # juega en la posición de mediocampista
+   
+q1:valverde wdt:P31 q1:jugador ;          # Valverde es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:mediocampista .        # juega en la posición de mediocampista
+
+q1:camavinga wdt:P31 q1:jugador ;         # Camavinga es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:mediocampista .        # juega en la posición de mediocampista
+
+q1:tchouameni wdt:P31 q1:jugador ;        # Tchouameni es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:mediocampista .        # juega en la posición de mediocampista
+
+q1:ceballos wdt:P31 q1:jugador ;          # Ceballos es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:mediocampista .        # juega en la posición de mediocampista
+   
+q1:mbappe wdt:P31 q1:jugador ;            # Mbappé es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:delantero .            # juega en la posición de delantero
+
+q1:vini_jr wdt:P31 q1:jugador ;           # Vinícius Jr. es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:delantero .            # juega en la posición de delantero
+   
+q1:rodrygo wdt:P31 q1:jugador ;           # Rodrygo es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:delantero .            # juega en la posición de delantero
+   
+q1:endrick wdt:P31 q1:jugador ;           # Endrick es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:delantero .            # juega en la posición de delantero
+   
+q1:brahim wdt:P31 q1:jugador ;            # Brahim es un jugador
+    t1:juega_en q1:real_madrid ;          # juega en el equipo Real Madrid
+    t1:posicion q1:delantero .            # juega en la posición de delantero
+     
+# Definición del entrenador
+
+q1:ancelotti wdt:P31 q1:entrenador ;      # Ancelotti es un entrenador
+    t1:entrena_al q1:real_madrid ;        # entrena al equipo Real Madrid
+    t1:posicion q1:banquillo.             # tiene el rol de banquillo
+    
+# Definición de equipo
+
+q1:real_madrid wdt:P31 q1:equipo ;     # Real Madrid es un equipo de fútbol
+    t1:ubicado_en q1:espana .          # Real Madrid está ubicado en España
+    
+
+# Definición de posiciones y ubicaciones
+
+q1:delantero wdt:P31 q1:posicion .     # Delantero es una posición en el fútbol
+q1:mediocampista wdt:P31 q1:posicion . # Mediocampista es una posición en el fútbol
+q1:francia wdt:P31 q1:pais .           # Francia es un país
+q1:espana wdt:P31 q1:pais .            # España es un país
