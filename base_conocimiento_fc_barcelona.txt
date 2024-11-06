@@ -1,0 +1,112 @@
+# Base de Conocimiento de un equipo de fútbol
+
+# Definición de jugadores de fútbol
+
+q1:ter_stegen wdt:P31 q1:jugador ;          
+    t1:juega_en q1:fc_barcelona ;         
+    t1:posicion q1:portero .             
+    t1:dorsal "1" .
+
+q1:cubarsi wdt:P31 q1:jugador ;           
+    t1:juega_en q1:fc_barcelona ;
+    t1:posicion q1:defensa .                 
+    t1:dorsal "2" .
+
+q1:balde wdt:P31 q1:jugador ;             
+    t1:juega_en q1:fc_barcelona ;    
+    t1:posicion q1:defensa .        
+    t1:dorsal "3" .
+
+q1:araujo wdt:P31 q1:jugador ;
+    t1:juega_en q1:fc_barcelona ;       
+    t1:posicion q1:defensa .                
+    t1:dorsal "4" .
+   
+q1:i_martinez wdt:P31 q1:jugador ;          
+    t1:juega_en q1:fc_barcelona ;           
+    t1:posicion q1:defensa .                  
+    t1:dorsal "5" .
+
+q1:christensen wdt:P31 q1:jugador ;   
+    t1:juega_en q1:fc_barcelona ;          
+    t1:posicion q1:defensa .             
+    t1:dorsal "15" .
+
+q1:kounde wdt:P31 q1:jugador ;            
+    t1:juega_en q1:fc_barcelona ;             
+    t1:posicion q1:defensa .                
+    t1:dorsal "23" .
+   
+q1:eric_garcia wdt:P31 q1:jugador ;        
+    t1:juega_en q1:fc_barcelona ;     
+    t1:posicion q1:defensa .                 
+    t1:dorsal "24" .
+
+q1:gavi wdt:P31 q1:jugador ;                  
+    t1:juega_en q1:fc_barcelona ;    
+    t1:posicion q1:mediocampista .            
+    t1:dorsal "6" .
+
+q1:pedri wdt:P31 q1:jugador ;           
+    t1:juega_en q1:fc_barcelona ;           
+    t1:posicion q1:mediocampista .        
+    t1:dorsal "8" .
+
+q1:fermin wdt:P31 q1:jugador ;    
+    t1:juega_en q1:fc_barcelona ;       
+    t1:posicion q1:mediocampista .            
+    t1:dorsal "16" .
+q1:dani_olmo wdt:P31 q1:jugador ;             
+    t1:juega_en q1:fc_barcelona ;             
+    t1:posicion q1:mediocampista .           
+    t1:dorsal "20" .
+
+q1:frenkie_de_jong wdt:P31 q1:jugador ;
+    t1:juega_en q1:fc_barcelona ;             
+    t1:posicion q1:mediocampista .           
+    t1:dorsal "21" .
+
+q1:m_casado wdt:P31 q1:jugador ;              
+    t1:juega_en q1:fc_barcelona ;           
+    t1:posicion q1:mediocampista .            
+    t1:dorsal "17" .
+
+q1:lewandowski wdt:P31 q1:jugador ;         
+    t1:juega_en q1:fc_barcelona ;            
+    t1:posicion q1:delantero .              
+    t1:dorsal "9" .
+
+q1:ansu_fati wdt:P31 q1:jugador ;           
+    t1:juega_en q1:fc_barcelona ;            
+    t1:posicion q1:delantero .               
+    t1:dorsal "10" .
+
+q1:raphinha wdt:P31 q1:jugador ;            
+    t1:juega_en q1:fc_barcelona ;             
+    t1:posicion q1:delantero .             
+    t1:dorsal "11" .
+
+q1:lamine_yamal wdt:P31 q1:jugador ;      
+    t1:juega_en q1:fc_barcelona ;             
+    t1:posicion q1:delantero .              
+    t1:dorsal "19" .
+
+# Definición del entrenador
+
+q1:hansi_flick wdt:P31 q1:entrenador ;       
+    t1:entrena_al q1:fc_barcelona ;         
+    t1:posicion q1:banquillo .              
+
+# Definición de equipo
+
+q1:fc_barcelona wdt:P31 q1:equipo ;      
+    t1:ubicado_en q1:espana .                
+   
+# Definición de posiciones y ubicaciones
+
+q1:delantero wdt:P31 q1:posicion .          
+q1:mediocampista wdt:P31 q1:posicion .     
+q1:defensa wdt:P31 q1:posicion .           
+q1:portero wdt:P31 q1:posicion .         
+q1:entrenador wdt:P31 q1:posicion .       
+q1:espana wdt:P31 q1:pais .                   
