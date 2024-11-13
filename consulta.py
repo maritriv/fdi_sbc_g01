@@ -101,7 +101,9 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
                 match = False
                 break
 
-            if verbo_cond != verbo:
+            if verbo_cond.startswith('?'):  # Es una variable
+                bindings[verbo_cond[1:]] = verbo
+            elif verbo_cond != verbo:  # Si no es una variable, debe coincidir con el valor
                 match = False
                 break
 
