@@ -142,10 +142,10 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
             if not match:
                 break
 
-        if match:
-            # Agregar solo las variables solicitadas en la consulta
-            resultado = {var: bindings.get(var, "") for var in variables}
-            resultados.append(resultado)
+            if match:
+                # Agregar solo las variables solicitadas en la consulta
+                resultado = {var: bindings.get(var, "") for var in variables}
+                resultados.append(resultado)
 
     # Ordenar los resultados si `ORDER BY` está definido
     if order_by:
@@ -158,5 +158,3 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
         resultados = resultados[:limit]
 
     return resultados
-
-
