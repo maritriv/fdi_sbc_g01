@@ -52,3 +52,15 @@ def cargar_base_conocimiento(archivo):
                 raise ValueError("Formato de línea inesperado: debe terminar en ';' o '.'")
 
     return base_conocimiento
+
+def cargar_multiples_bases_conocimiento(archivos):
+    """
+    Carga y combina múltiples bases de conocimiento en una sola lista.
+    """
+    base_combinada = []
+    for archivo in archivos:
+        try:
+            base_combinada.extend(cargar_base_conocimiento(archivo))
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró el archivo: {archivo}")
+    return base_combinada

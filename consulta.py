@@ -91,6 +91,16 @@ def leer_consulta(consulta):
         'order_by': order_by
     }
 
+def agrupar_tripletas_por_sujeto(base_conocimiento):
+    """
+    Agrupa las tripletas por sujeto.
+    """
+    sujetos = {}
+    for sujeto, verbo, objeto in base_conocimiento:
+        if sujeto not in sujetos:
+            sujetos[sujeto] = []
+        sujetos[sujeto].append((verbo, objeto))
+    return sujetos
 
 def ejecutar_consulta(base_conocimiento, consulta_parsed):
     """
@@ -103,6 +113,76 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
 
     resultados = []
 
+    # Agrupar las tripletas por jugador
+    sujetos = agrupar_tripletas_por_sujeto(base_conocimiento)
+
+     # Iterar sobre los sujetos
+    for sujeto, tripletas_sujeto in sujetos.items():
+        bindings = {}
+        match = True
+
+        # Evaluar cada condición en `WHERE`
+        for condicion in condiciones_where:
+            sujeto_cond, verbo_cond, objeto_cond = condicion
+
+            # Buscar tripletas que cumplan con esta condición
+            tripleta_match = False
+            for verbo, objeto in tripletas_sujeto:
+                # Crear un diccionario temporal para verificar posibles unificaciones
+                temp_bindings = bindings.copy()
+
+                # Verificar el sujeto
+                if sujeto_cond.startswith('?'):  # Variable
+                    if sujeto_cond[1:] not in temp_bindings:
+                        temp_bindings[sujeto_cond[1:]] = sujeto
+                    elif temp_bindings[sujeto_cond[1:]] != sujeto:
+                        continue  # No unifica
+                elif sujeto_cond != sujeto:
+                    continue  # No unifica
+
+                # Verificar el verbo
+                if verbo_cond.startswith('?'):  # Variable
+                    if verbo_cond[1:] not in temp_bindings:
+                        temp_bindings[verbo_cond[1:]] = verbo
+                    elif temp_bindings[verbo_cond[1:]] != verbo:
+                        continue  # No unifica
+                elif verbo_cond != verbo:
+                    continue  # No unifica
+
+                # Verificar el objeto
+                if objeto_cond.startswith('?'):  # Variable
+                    if objeto_cond[1:] not in temp_bindings:
+                        temp_bindings[objeto_cond[1:]] = objeto
+                    elif temp_bindings[objeto_cond[1:]] != objeto:
+                        continue  # No unifica
+                elif objeto_cond != objeto:
+                    continue  # No unifica
+
+                # Si llega aquí, la tripleta hace match
+                tripleta_match = True
+                bindings = temp_bindings  # Actualizar bindings globales
+                break
+
+            if not tripleta_match:
+                match = False
+                break
+
+        # Si las condiciones WHERE se cumplen, agregar el resultado
+        if match:
+            # Agregar solo las variables solicitadas en la consulta
+            resultado = {var: bindings.get(var, "") for var in variables}
+            resultados.append(resultado)
+
+    # Ordenar los resultados si `ORDER BY` está definido
+    if order_by:
+        variable, direction = order_by
+        reverse = direction.lower() == "desc"
+        resultados = sorted(resultados, key=lambda x: x.get(variable, ""), reverse=reverse)
+
+    # Aplicar límite si `LIMIT` está definido
+    if limit:
+        resultados = resultados[:limit]
+    """
     # Iterar sobre las tripletas en la base de conocimiento
     for sujeto, verbo, objeto in base_conocimiento:
         bindings = {}
@@ -117,7 +197,6 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
                     bindings[sujeto_cond[1:]] = sujeto
                 elif bindings[sujeto_cond[1:]] != sujeto:
                     match = False
-
             elif sujeto_cond != sujeto:
                 match = False
 
@@ -126,8 +205,7 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
                     bindings[verbo_cond[1:]] = verbo
                 elif bindings[verbo_cond[1:]] != verbo:
                     match = False
-
-            elif verbo_cond != verbo:
+            elif verbo_cond != verbo: 
                 match = False
 
             if objeto_cond.startswith('?'):  # Es una variable
@@ -135,17 +213,17 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
                     bindings[objeto_cond[1:]] = objeto
                 elif bindings[objeto_cond[1:]] != objeto:
                     match = False
-
             elif objeto_cond != objeto:
                 match = False
 
             if not match:
                 break
 
-            if match:
-                # Agregar solo las variables solicitadas en la consulta
-                resultado = {var: bindings.get(var, "") for var in variables}
-                resultados.append(resultado)
+        # Si las condiciones WHERE se cumplen, agregar el resultado
+        if match:
+            # Agregar solo las variables solicitadas en la consulta
+            resultado = {var: bindings.get(var, "") for var in variables}
+            resultados.append(resultado)
 
     # Ordenar los resultados si `ORDER BY` está definido
     if order_by:
@@ -156,5 +234,6 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
     # Aplicar límite si `LIMIT` está definido
     if limit:
         resultados = resultados[:limit]
+    """
 
     return resultados
