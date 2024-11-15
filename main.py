@@ -14,8 +14,8 @@ def main(archivo_base_conocimiento):
     while True:
         # Leer el comando de entrada del usuario
         comando = input("SBC_P3> ").strip()
-
-        if comando.startswith("select"):
+        
+        if comando.startswith("select") or comando.startswith("SELECT"):
             try:
                 # Procesar la consulta con leer_consulta para obtener su estructura
                 consulta_parsed = leer_consulta(comando)

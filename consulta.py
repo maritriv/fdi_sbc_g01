@@ -1,51 +1,65 @@
-# consulta.py
-
 import re
 
-def leer_consulta(consulta):
+def procesar_select(consulta):
     """
-    Procesa y analiza una consulta SPARQL para extraer variables, condiciones WHERE,
-    limit, y order by sin usar expresiones regulares.
+    Procesa la parte SELECT de la consulta para extraer las variables.
     """
-    variables = []
-    condiciones_where = []
-    limit = None
-    order_by = None
-
     partes = consulta.lower().split("select")
     if len(partes) < 2:
         raise ValueError("La consulta debe comenzar con 'SELECT'.")
-
+    
     select_part = partes[1].strip()
     if "where" in select_part:
         select_part = select_part.split("where")[0].strip()
+    
     variables = [var.strip('?') for var in select_part.split() if var.startswith('?')]
+    return variables
 
-    if "where" in consulta.lower():
-        where_start = consulta.lower().find("where") + len("where")
-        where_content = consulta[where_start:].strip()
 
-        if '{' not in where_content or '}' not in where_content:
-            raise ValueError("La cláusula 'WHERE' debe estar rodeada de llaves '{ }'.")
+def procesar_where(consulta):
+    """
+    Procesa la parte WHERE de la consulta para extraer las condiciones.
+    """
+    if "where" not in consulta.lower():
+        raise ValueError("La consulta debe contener una cláusula 'WHERE'.")
 
-        where_content = where_content.split('{', 1)[1].rsplit('}', 1)[0].strip()
-        tripletas = where_content.split('.')
-        for tripleta in tripletas:
-            tripleta = tripleta.strip()
-            if tripleta:
-                partes = tripleta.split()
+    where_start = consulta.lower().find("where") + len("where")
+    where_content = consulta[where_start:].strip()
 
-                if len(partes) == 3:
-                    tripleta = partes
-                    condiciones_where.append(tripleta)
+    if '{' not in where_content or '}' not in where_content:
+        raise ValueError("La cláusula 'WHERE' debe estar rodeada de llaves '{ }'.")
 
+    where_content = where_content.split('{', 1)[1].rsplit('}', 1)[0].strip()
+    tripletas = where_content.split('.')
+    
+    condiciones_where = []
+    for tripleta in tripletas:
+        tripleta = tripleta.strip()
+        if tripleta:
+            partes = tripleta.split()
+            if len(partes) == 3:
+                condiciones_where.append(partes)
+    
+    return condiciones_where
+
+
+def procesar_limit(consulta):
+    """
+    Procesa la parte LIMIT de la consulta para extraer el valor.
+    """
     if "limit" in consulta.lower():
         limit_part = consulta.lower().split("limit")[-1].strip()
         try:
-            limit = int(limit_part.split()[0])
+            return int(limit_part.split()[0])
         except ValueError:
             raise ValueError("El valor de 'LIMIT' debe ser un número entero.")
+    return None
 
+
+def procesar_order_by(consulta):
+    """
+    Procesa la parte ORDER BY de la consulta para extraer la variable y la dirección.
+    """
     if "order by" in consulta.lower():
         order_part = consulta.lower().split("order by")[-1].strip()
         order_parts = order_part.split()
@@ -54,9 +68,21 @@ def leer_consulta(consulta):
             if order_direction in ("asc", "desc"):
                 variable = order_parts[1].strip('()')
                 if variable.startswith('?'):
-                    order_by = (variable[1:], order_direction)
+                    return (variable[1:], order_direction)
             else:
                 raise ValueError("ORDER BY debe estar seguido de ASC o DESC y una variable entre paréntesis.")
+    return None
+
+
+def leer_consulta(consulta):
+    """
+    Procesa y analiza una consulta SPARQL para extraer variables, condiciones WHERE,
+    limit, y order by.
+    """
+    variables = procesar_select(consulta)
+    condiciones_where = procesar_where(consulta)
+    limit = procesar_limit(consulta)
+    order_by = procesar_order_by(consulta)
 
     return {
         'variables': variables,
@@ -68,15 +94,7 @@ def leer_consulta(consulta):
 
 def ejecutar_consulta(base_conocimiento, consulta_parsed):
     """
-    Ejecuta la consulta en la base de conocimiento utilizando los criterios proporcionados
-    por `consulta_parsed`.
-
-    Parameters:
-    base_conocimiento (list): Lista de tripletas en forma de (sujeto, verbo, objeto).
-    consulta_parsed (dict): Diccionario con los elementos de la consulta analizados.
-
-    Returns:
-    list: Lista de resultados de la consulta.
+    Ejecuta la consulta en la base de conocimiento utilizando los criterios proporcionados.
     """
     variables = consulta_parsed['variables']
     condiciones_where = consulta_parsed['condiciones_where']
@@ -87,30 +105,41 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
 
     # Iterar sobre las tripletas en la base de conocimiento
     for sujeto, verbo, objeto in base_conocimiento:
-        match = True
         bindings = {}
+        match = True
 
         # Evaluar cada condición en `WHERE`
         for condicion in condiciones_where:
-            # `condicion` ya es una lista [sujeto, verbo, objeto]
             sujeto_cond, verbo_cond, objeto_cond = condicion
 
             if sujeto_cond.startswith('?'):  # Es una variable
-                bindings[sujeto_cond[1:]] = sujeto
+                if sujeto_cond[1:] not in bindings:
+                    bindings[sujeto_cond[1:]] = sujeto
+                elif bindings[sujeto_cond[1:]] != sujeto:
+                    match = False
+
             elif sujeto_cond != sujeto:
                 match = False
-                break
 
             if verbo_cond.startswith('?'):  # Es una variable
-                bindings[verbo_cond[1:]] = verbo
-            elif verbo_cond != verbo:  # Si no es una variable, debe coincidir con el valor
+                if verbo_cond[1:] not in bindings:
+                    bindings[verbo_cond[1:]] = verbo
+                elif bindings[verbo_cond[1:]] != verbo:
+                    match = False
+
+            elif verbo_cond != verbo:
                 match = False
-                break
 
             if objeto_cond.startswith('?'):  # Es una variable
-                bindings[objeto_cond[1:]] = objeto
+                if objeto_cond[1:] not in bindings:
+                    bindings[objeto_cond[1:]] = objeto
+                elif bindings[objeto_cond[1:]] != objeto:
+                    match = False
+
             elif objeto_cond != objeto:
                 match = False
+
+            if not match:
                 break
 
         if match:
@@ -129,6 +158,5 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
         resultados = resultados[:limit]
 
     return resultados
-
 
 

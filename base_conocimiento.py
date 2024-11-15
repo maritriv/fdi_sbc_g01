@@ -6,10 +6,7 @@ def cargar_tripleta_con_sujeto(partes):
     """
     sujeto_actual = partes[0]
     verbo = partes[1]
-    if ":" in partes[2]:
-        objeto = partes[2]
-    else:
-        objeto = partes[2].strip('"')
+    objeto = partes[2]
     return (sujeto_actual, verbo, objeto)
 
 
@@ -18,10 +15,7 @@ def cargar_tripleta_sin_sujeto(partes):
     Carga una tripleta sin un sujeto explícito.
     """
     verbo = partes[0]
-    if ":" in partes[1]:
-        objeto = partes[1]
-    else:
-        objeto = partes[1].strip('"')
+    objeto = partes[1]
     return (verbo, objeto)
 
 
