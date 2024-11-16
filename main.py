@@ -1,5 +1,5 @@
 import click
-from base_conocimiento import cargar_multiples_bases_conocimiento, imprimir_base_conocimiento
+from base_conocimiento import cargar_multiples_bases_conocimiento, imprimir_base_conocimiento, load
 from consulta import leer_consulta, ejecutar_consulta
 from utils import imprimir_tabla
 
@@ -41,12 +41,8 @@ def main(archivos_base_conocimiento):
             try:
                 # Procesar el comando load
                 base_anadida = []
-                partes = comando.split(' ', 1)
-                archivos = partes[1].strip()
-                archivos = archivos.split()
-                base_anadida = cargar_multiples_bases_conocimiento(archivos, base_conocimiento)
+                base_anadida = load(comando, base_conocimiento)
                 base_conocimiento = base_conocimiento + base_anadida
-                print("OK!")
 
             except FileNotFoundError as e:
                 click.echo(f"Error al cargar el archivo: {e}")

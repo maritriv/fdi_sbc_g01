@@ -102,16 +102,20 @@ def cargar_multiples_bases_conocimiento(archivos, base_conocimiento):
         except FileNotFoundError:
             raise FileNotFoundError(f"No se encontró el archivo: {archivo}")
     return base_combinada
-"""
-def load(archivo, base_conocimiento):
-    
+
+def load(comando, base_conocimiento):
+    """
     Carga una base de conocimiento desde un archivo, evitando duplicados en el sistema.
-    
-    
+    """
+    base_anadida = []
+    partes = comando.split(' ', 1)
+    archivos = partes[1].strip()
+    archivos = archivos.split()
+    base_anadida = cargar_multiples_bases_conocimiento(archivos, base_conocimiento)
     print("OK!")
 
     return base_anadida
-"""
+
 
 def imprimir_base_conocimiento(base_conocimiento):
     """
