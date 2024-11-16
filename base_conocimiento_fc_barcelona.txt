@@ -8,125 +8,186 @@
 # wdt:P37: Relación de "idioma oficial", que indica el idioma oficial de un país.
 
 # Definición de jugadores de fútbol
-q1:ter_stegen wdt:P31 q1:jugador ;          
-    wdt:P54 q1:fc_barcelona ;         
+
+# Jugadores
+q1:ter_stegen wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:portero ;
     t1:dorsal "1" ;
     wdt:P27 q1:alemania ;
-    t1:es_capitan_de q1:fc_barcelona . 
+    t1:es_capitan_de q1:fc_barcelona ;
+    t1:goles "0" ;
+    t1:asistencias "1" ;
+    t1:paradas_partido "2.68" ;
+    t1:anos_en_equipo "10" .
 
-q1:cubarsi wdt:P31 q1:jugador ;           
+q1:cubarsi wdt:P31 q1:jugador ;
     wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:defensa ;
     t1:dorsal "2" ;
-    wdt:P27 q1:francia . 
+    wdt:P27 q1:francia ;
+    t1:goles "2" ;
+    t1:asistencias "3" ;
+    t1:anos_en_equipo "1" .
 
-q1:balde wdt:P31 q1:jugador ;             
-    wdt:P54 q1:fc_barcelona ;    
+q1:balde wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:defensa ;
     t1:dorsal "3" ;
-    wdt:P27 q1:espana . 
+    wdt:P27 q1:espana ;
+    t1:goles "1" ;
+    t1:asistencias "4" ;
+    t1:anos_en_equipo "3" .
 
 q1:araujo wdt:P31 q1:jugador ;
-    wdt:P54 q1:fc_barcelona ;       
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:defensa ;
     t1:dorsal "4" ;
-    wdt:P27 q1:uruguay . 
-   
-q1:i_martinez wdt:P31 q1:jugador ;          
-    wdt:P54 q1:fc_barcelona ;           
+    wdt:P27 q1:uruguay ;
+    t1:goles "3" ;
+    t1:asistencias "2" ;
+    t1:anos_en_equipo "5" .
+
+q1:i_martinez wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:defensa ;
     t1:dorsal "5" ;
-    wdt:P27 q1:argentina . 
+    wdt:P27 q1:argentina ;
+    t1:goles "0" ;
+    t1:asistencias "0" ;
+    t1:anos_en_equipo "1" .
 
-q1:christensen wdt:P31 q1:jugador ;   
-    wdt:P54 q1:fc_barcelona ;          
+q1:christensen wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:defensa ;
     t1:dorsal "15" ;
-    wdt:P27 q1:dinamarca . 
+    wdt:P27 q1:dinamarca ;
+    t1:goles "1" ;
+    t1:asistencias "1" ;
+    t1:anos_en_equipo "2" .
 
-q1:kounde wdt:P31 q1:jugador ;            
-    wdt:P54 q1:fc_barcelona ;             
+q1:kounde wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:defensa ;
     t1:dorsal "23" ;
-    wdt:P27 q1:francia . 
-   
-q1:eric_garcia wdt:P31 q1:jugador ;        
-    wdt:P54 q1:fc_barcelona ;     
+    wdt:P27 q1:francia ;
+    t1:goles "2" ;
+    t1:asistencias "5" ;
+    t1:anos_en_equipo "2" .
+
+q1:eric_garcia wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:defensa ;
     t1:dorsal "24" ;
-    wdt:P27 q1:espana . 
+    wdt:P27 q1:espana ;
+    t1:goles "0" ;
+    t1:asistencias "0" ;
+    t1:anos_en_equipo "3" .
 
-q1:gavi wdt:P31 q1:jugador ;                   
-    wdt:P54 q1:fc_barcelona ;    
+q1:gavi wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:mediocampista ;
     t1:dorsal "6" ;
-    wdt:P27 q1:espana . 
+    wdt:P27 q1:espana ;
+    t1:goles "4" ;
+    t1:asistencias "6" ;
+    t1:anos_en_equipo "4" .
 
-q1:pedri wdt:P31 q1:jugador ;           
-    wdt:P54 q1:fc_barcelona ;           
+q1:pedri wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:mediocampista ;
     t1:dorsal "8" ;
-    wdt:P27 q1:espana . 
+    wdt:P27 q1:espana ;
+    t1:goles "5" ;
+    t1:asistencias "7" ;
+    t1:anos_en_equipo "4" .
 
-q1:fermin wdt:P31 q1:jugador ;    
-    wdt:P54 q1:fc_barcelona ;       
+q1:fermin wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:mediocampista ;
     t1:dorsal "16" ;
-    wdt:P27 q1:espana . 
+    wdt:P27 q1:espana ;
+    t1:goles "1" ;
+    t1:asistencias "1" ;
+    t1:anos_en_equipo "2" .
 
-q1:dani_olmo wdt:P31 q1:jugador ;             
-    wdt:P54 q1:fc_barcelona ;             
+q1:dani_olmo wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:mediocampista ;
     t1:dorsal "20" ;
-    wdt:P27 q1:espana . 
+    wdt:P27 q1:espana ;
+    t1:goles "3" ;
+    t1:asistencias "4" ;
+    t1:anos_en_equipo "2" .
 
 q1:frenkie_de_jong wdt:P31 q1:jugador ;
-    wdt:P54 q1:fc_barcelona ;             
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:mediocampista ;
     t1:dorsal "21" ;
-    wdt:P27 q1:paises_bajos . 
+    wdt:P27 q1:paises_bajos ;
+    t1:goles "2" ;
+    t1:asistencias "6" ;
+    t1:anos_en_equipo "5" .
 
-q1:m_casado wdt:P31 q1:jugador ;               
-    wdt:P54 q1:fc_barcelona ;           
+q1:m_casado wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:mediocampista ;
     t1:dorsal "17" ;
-    wdt:P27 q1:espana . 
+    wdt:P27 q1:espana ;
+    t1:goles "0" ;
+    t1:asistencias "0" ;
+    t1:anos_en_equipo "1" .
 
-q1:lewandowski wdt:P31 q1:jugador ;         
-    wdt:P54 q1:fc_barcelona ;            
+q1:lewandowski wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:delantero ;
     t1:dorsal "9" ;
-    wdt:P27 q1:polonia . 
+    wdt:P27 q1:polonia ;
+    t1:goles "25" ;
+    t1:asistencias "5" ;
+    t1:anos_en_equipo "2" .
 
-q1:ansu_fati wdt:P31 q1:jugador ;           
-    wdt:P54 q1:fc_barcelona ;            
+q1:ansu_fati wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:delantero ;
     t1:dorsal "10" ;
-    wdt:P27 q1:espana . 
+    wdt:P27 q1:espana ;
+    t1:goles "7" ;
+    t1:asistencias "3" ;
+    t1:anos_en_equipo "4" .
 
-q1:raphinha wdt:P31 q1:jugador ;            
-    wdt:P54 q1:fc_barcelona ;             
+q1:raphinha wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:delantero ;
     t1:dorsal "11" ;
-    wdt:P27 q1:brasil . 
+    wdt:P27 q1:brasil ;
+    t1:goles "9" ;
+    t1:asistencias "8" ;
+    t1:anos_en_equipo "3" .
 
-q1:lamine_yamal wdt:P31 q1:jugador ;      
-    wdt:P54 q1:fc_barcelona ;             
+q1:lamine_yamal wdt:P31 q1:jugador ;
+    wdt:P54 q1:fc_barcelona ;
     t1:posicion q1:delantero ;
     t1:dorsal "19" ;
-    wdt:P27 q1:espana . 
+    wdt:P27 q1:espana ;
+    t1:goles "5" ;
+    t1:asistencias "3" ;
+    t1:anos_en_equipo "2" .
+
 
 # Definición del entrenador
 
-q1:hansi_flick wdt:P31 q1:entrenador ;       
-    t1:entrena_al q1:fc_barcelona ;         
-    t1:posicion q1:banquillo .              
+q1:hansi_flick wdt:P31 q1:entrenador ;
+    t1:entrena_al q1:fc_barcelona ;
+    t1:posicion q1:banquillo ;
+    t1:anos_en_equipo "1" .
+
 
 # Definición de equipo
 
 q1:fc_barcelona wdt:P31 q1:equipo ;      
-    wdt:P131 q1:espana .
+    wdt:P131 q1:espana ;
+    t1:champions "5" .
 
 # Definición de posiciones y ubicaciones
 
