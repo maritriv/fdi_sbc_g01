@@ -40,10 +40,12 @@ def main(archivos_base_conocimiento):
         elif comando.startswith("load") or comando.startswith("LOAD"):
             try:
                 # Procesar el comando load
+                base_anadida = []
                 partes = comando.split(' ', 1)
                 archivos = partes[1].strip()
                 archivos = archivos.split()
-                cargar_multiples_bases_conocimiento(archivos, base_conocimiento)
+                base_anadida = cargar_multiples_bases_conocimiento(archivos, base_conocimiento)
+                base_conocimiento = base_conocimiento + base_anadida
                 print("OK!")
 
             except FileNotFoundError as e:
