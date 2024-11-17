@@ -1,7 +1,7 @@
 # utils.py
 
 import click
-from comandos import load, add, delete, save
+from comandos import load, add, delete, save, help
 from consulta import leer_consulta, ejecutar_consulta
 
 #Funciones de salida de datos:
@@ -78,6 +78,10 @@ def iniciar_bucle_interactivo(base_conocimiento):
     """
     while True:
         comando = input("SBC_P3> ").strip()
+
+        # Comando 'help'
+        if comando.lower() == "help":
+            help()
 
         # Procesar comando 'select'
         if comando.lower().startswith("select"):

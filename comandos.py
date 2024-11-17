@@ -2,8 +2,8 @@
 
 import click
 from base_conocimiento import cargar_multiples_bases_conocimiento
+
 # Comando load 
-# Función para cargar una base de conocimiento en tiempo real
 def load(base_conocimiento, comando):
     """
     Carga un nuevo archivo de base de conocimiento especificado en el comando 'load'.
@@ -178,3 +178,23 @@ def save(base_conocimiento, comando):
     guardar_base_conocimiento(base_conocimiento, archivo)
 
     return base_conocimiento
+
+def help():
+    """
+    Muestra una lista de los comandos disponibles y su descripción.
+    """
+    ayuda = """
+    Comandos disponibles:
+
+    1. 'select <consulta>'   - Realiza una consulta SPARQL sobre la base de conocimiento cargada.
+    2. 'load <archivos>'     - Carga uno o más archivos de base de conocimiento.
+    3. 'add <sujeto> <verbo> <objeto>'   - Añade una tripleta (sujeto, verbo, objeto) a la base de conocimiento.
+    4. 'delete <sujeto> <verbo> <objeto>' - Elimina una tripleta específica de la base de conocimiento.
+    5. 'save <nombre_archivo>'   - Guarda la base de conocimiento actual en el archivo especificado.
+    6. 'print_all' o 'imprimir_todo' - Imprime todas las tripletas de la base de conocimiento cargada.
+    7. 'exit'   - Sale del programa interactivo.
+
+    Usa 'exit' para salir de la aplicación en cualquier momento.
+    """
+    click.echo(ayuda)
+

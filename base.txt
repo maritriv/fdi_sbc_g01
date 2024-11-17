@@ -1,66 +1,187 @@
-q1:courtois wdt:P31 q1:jugador .
-q1:courtois wdt:P54 q1:real_madrid .
-q1:courtois t1:posicion q1:portero .
-q1:courtois t1:dorsal "1" .
-q1:courtois wdt:P27 q1:belgica .
-q1:courtois t1:goles "0" .
-q1:courtois t1:asistencias "0" .
-q1:courtois t1:paradas_partido "2.91" .
-q1:courtois t1:anos_en_equipo "5" .
-q1:carvajal wdt:P31 q1:jugador .
-q1:carvajal wdt:P54 q1:real_madrid .
-q1:carvajal t1:posicion q1:defensa .
-q1:carvajal t1:dorsal "2" .
-q1:carvajal wdt:P27 q1:espana .
-q1:carvajal t1:goles "1" .
-q1:carvajal t1:asistencias "4" .
-q1:carvajal t1:anos_en_equipo "10" .
-q1:militao wdt:P31 q1:jugador .
-q1:militao wdt:P54 q1:real_madrid .
-q1:militao t1:posicion q1:defensa .
-q1:militao t1:dorsal "3" .
-q1:militao wdt:P27 q1:brasil .
-q1:militao t1:goles "5" .
-q1:militao t1:asistencias "0" .
-q1:militao t1:anos_en_equipo "4" .
-q1:vallejo wdt:P31 q1:jugador .
-q1:vallejo wdt:P54 q1:real_madrid .
-q1:vallejo t1:posicion q1:defensa .
-q1:vallejo t1:dorsal "18" .
-q1:vallejo wdt:P27 q1:espana .
-q1:vallejo t1:goles "0" .
-q1:vallejo t1:asistencias "0" .
-q1:vallejo t1:anos_en_equipo "6" .
-q1:lucas_vazquez wdt:P31 q1:jugador .
-q1:lucas_vazquez wdt:P54 q1:real_madrid .
-q1:lucas_vazquez t1:posicion q1:defensa .
-q1:lucas_vazquez t1:dorsal "17" .
-q1:lucas_vazquez wdt:P27 q1:espana .
-q1:lucas_vazquez t1:goles "2" .
-q1:lucas_vazquez t1:asistencias "3" .
-q1:lucas_vazquez t1:anos_en_equipo "8" .
-q1:rudiger wdt:P31 q1:jugador .
-q1:rudiger wdt:P54 q1:real_madrid .
-q1:rudiger t1:posicion q1:defensa .
-q1:rudiger t1:dorsal "22" .
-q1:rudiger wdt:P27 q1:alemania .
-q1:rudiger t1:goles "2" .
-q1:rudiger t1:asistencias "1" .
-q1:rudiger t1:anos_en_equipo "2" .
-q1:mendy wdt:P31 q1:jugador .
-q1:mendy wdt:P54 q1:real_madrid .
-q1:mendy t1:posicion q1:defensa .
-q1:mendy t1:dorsal "23" .
-q1:mendy wdt:P27 q1:francia .
-q1:mendy t1:goles "0" .
-q1:mendy t1:asistencias "2" .
-q1:mendy t1:anos_en_equipo "4" .
-q1:bellingham wdt:P31 q1:jugador .
-q1:bellingham wdt:P54 q1:real_madrid .
-q1:bellingham t1:posicion q1:mediocampista .
-q1:bellingham t1:dorsal "5" .
-q1:bellingham wdt:P27 q1:inglaterra .
-q1:bellingham t1:goles "8" .
-q1:bellingham t1:asistencias "5" .
-q1:bellingham t1:anos_en_equipo "2" .
-
+q1:courtois wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:portero ;
+t1:dorsal "1" ;
+wdt:P27 q1:belgica ;
+t1:goles "0" ;
+t1:asistencias "0" ;
+t1:paradas_partido "2.91" ;
+t1:anos_en_equipo "5" ;
+wdt:P31 q1:hombre .
+q1:carvajal wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:defensa ;
+t1:dorsal "2" ;
+wdt:P27 q1:espana ;
+t1:goles "1" ;
+t1:asistencias "4" ;
+t1:anos_en_equipo "10" .
+q1:militao wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:defensa ;
+t1:dorsal "3" ;
+wdt:P27 q1:brasil ;
+t1:goles "5" ;
+t1:asistencias "0" ;
+t1:anos_en_equipo "4" .
+q1:vallejo wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:defensa ;
+t1:dorsal "18" ;
+wdt:P27 q1:espana ;
+t1:goles "0" ;
+t1:asistencias "0" ;
+t1:anos_en_equipo "6" .
+q1:lucas_vazquez wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:defensa ;
+t1:dorsal "17" ;
+wdt:P27 q1:espana ;
+t1:goles "2" ;
+t1:asistencias "3" ;
+t1:anos_en_equipo "8" .
+q1:rudiger wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:defensa ;
+t1:dorsal "22" ;
+wdt:P27 q1:alemania ;
+t1:goles "2" ;
+t1:asistencias "1" ;
+t1:anos_en_equipo "2" .
+q1:mendy wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:defensa ;
+t1:dorsal "23" ;
+wdt:P27 q1:francia ;
+t1:goles "0" ;
+t1:asistencias "2" ;
+t1:anos_en_equipo "4" .
+q1:bellingham wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:mediocampista ;
+t1:dorsal "5" ;
+wdt:P27 q1:inglaterra ;
+t1:goles "8" ;
+t1:asistencias "5" ;
+t1:anos_en_equipo "2" .
+q1:modric wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:mediocampista ;
+t1:dorsal "10" ;
+wdt:P27 q1:croacia ;
+t1:capitan_de q1:real_madrid ;
+t1:goles "6" ;
+t1:asistencias "9" ;
+t1:anos_en_equipo "11" .
+q1:valverde wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:mediocampista ;
+t1:dorsal "8" ;
+wdt:P27 q1:uruguay ;
+t1:goles "7" ;
+t1:asistencias "6" ;
+t1:anos_en_equipo "6" .
+q1:camavinga wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:mediocampista ;
+t1:dorsal "6" ;
+wdt:P27 q1:francia ;
+t1:goles "2" ;
+t1:asistencias "4" ;
+t1:anos_en_equipo "3" .
+q1:tchouameni wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:mediocampista ;
+t1:dorsal "14" ;
+wdt:P27 q1:francia ;
+t1:goles "1" ;
+t1:asistencias "2" ;
+t1:anos_en_equipo "3" .
+q1:ceballos wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:mediocampista ;
+t1:dorsal "19" ;
+wdt:P27 q1:espana ;
+t1:goles "0" ;
+t1:asistencias "2" ;
+t1:anos_en_equipo "5" .
+q1:mbappe wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:delantero ;
+t1:dorsal "9" ;
+wdt:P27 q1:francia ;
+t1:goles "35" ;
+t1:asistencias "12" ;
+t1:anos_en_equipo "1" .
+q1:vini_jr wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:delantero ;
+t1:dorsal "7" ;
+wdt:P27 q1:brasil ;
+t1:goles "23" ;
+t1:asistencias "18" ;
+t1:anos_en_equipo "5" .
+q1:rodrygo wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:delantero ;
+t1:dorsal "11" ;
+wdt:P27 q1:brasil ;
+t1:goles "19" ;
+t1:asistencias "14" ;
+t1:anos_en_equipo "4" .
+q1:endrick wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:delantero ;
+t1:dorsal "16" ;
+wdt:P27 q1:brasil ;
+t1:goles "4" ;
+t1:asistencias "2" ;
+t1:anos_en_equipo "1" .
+q1:brahim wdt:P31 q1:jugador ;
+wdt:P54 q1:real_madrid ;
+t1:posicion q1:delantero ;
+t1:dorsal "21" ;
+wdt:P27 q1:espana ;
+t1:goles "3" ;
+t1:asistencias "5" ;
+t1:anos_en_equipo "2" .
+q1:ancelotti wdt:P31 q1:entrenador ;
+t1:entrena_al q1:real_madrid ;
+t1:posicion q1:banquillo ;
+t1:anos_en_equipo "5" .
+q1:real_madrid wdt:P31 q1:equipo ;
+wdt:P131 q1:espana ;
+t1:champions "15" .
+q1:portero wdt:P31 q1:posicion .
+q1:defensa wdt:P31 q1:posicion .
+q1:delantero wdt:P31 q1:posicion .
+q1:mediocampista wdt:P31 q1:posicion .
+q1:banquillo wdt:P31 q1:posicion .
+q1:francia wdt:P31 q1:pais ;
+wdt:P37 q1:frances ;
+t1:capital q1:paris ;
+t1:continente q1:europa .
+q1:espana wdt:P31 q1:pais ;
+wdt:P37 q1:espanol ;
+t1:capital q1:madrid ;
+t1:continente q1:europa .
+q1:brasil wdt:P31 q1:pais ;
+wdt:P37 q1:portugues ;
+t1:capital q1:brasilia ;
+t1:continente q1:america_del_sur .
+q1:alemania wdt:P31 q1:pais ;
+wdt:P37 q1:aleman ;
+t1:capital q1:berlin ;
+t1:continente q1:europa .
+q1:inglaterra wdt:P31 q1:pais ;
+wdt:P37 q1:ingles ;
+t1:capital q1:londres ;
+t1:continente q1:europa .
+q1:croacia wdt:P31 q1:pais ;
+wdt:P37 q1:croata ;
+t1:capital q1:zagreb ;
+t1:continente q1:europa .
+q1:uruguay wdt:P31 q1:pais ;
+wdt:P37 q1:espanol ;
+t1:capital q1:montevideo ;
+t1:continente q1:america_del_sur .
