@@ -76,10 +76,10 @@ EXIT: Finaliza el programa.
 
     Ejemplo:
 
-exit
+    exit
 
 HELP: Ayuda comandos del programa
 
     Ejemplo:
 
-help
+    help
