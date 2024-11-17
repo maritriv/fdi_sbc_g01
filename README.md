@@ -94,9 +94,11 @@ Base de conocimiento inicial:
 
 "q1:courtois"        "t1:posicion"    "q1:portero"
 
+
 Consulta SPARQL:
 
 SELECT ?jugador WHERE { ?jugador wdt:P31 q1:portero }
+
 
 Resultado:
 
