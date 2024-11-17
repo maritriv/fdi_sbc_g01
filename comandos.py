@@ -1,9 +1,12 @@
 # comandos.py
 
 import click
+import networkx as nx
+import matplotlib.pyplot as plt
 from base_conocimiento import cargar_multiples_bases_conocimiento
 
-# Comando load 
+
+# Comando load
 def load(base_conocimiento, comando):
     """
     Carga un nuevo archivo de base de conocimiento especificado en el comando 'load'.
@@ -21,18 +24,20 @@ def load(base_conocimiento, comando):
         click.echo("Por favor, especifique el archivo después de 'load'.")
     return base_conocimiento
 
+
 def cargar_nueva_base(comando, base_conocimiento):
     """
     Extrae el nombre de los archivos y carga una o varias bases de conocimiento
     """
     base_anadida = []
-    partes = comando.split(' ', 1)
+    partes = comando.split(" ", 1)
     archivos = partes[1].strip()
     archivos = archivos.split()
     base_anadida = cargar_multiples_bases_conocimiento(archivos, base_conocimiento)
     print("OK!")
 
     return base_anadida
+
 
 # Comando add
 def add(base_conocimiento, comando):
@@ -46,26 +51,34 @@ def add(base_conocimiento, comando):
     # Extraer los tres elementos del comando (sujeto, verbo, objeto)
     partes = comando.split(" ", 3)
     if len(partes) < 4:
-        click.echo("Error: El comando 'add' requiere tres parámetros (sujeto, verbo, objeto).")
+        click.echo(
+            "Error: El comando 'add' requiere tres parámetros (sujeto, verbo, objeto)."
+        )
         return
 
     sujeto, verbo, objeto = partes[1], partes[2], partes[3]
 
     # Función para verificar si una parte tiene un prefijo
     def tiene_prefijo(parte):
-        return ':' in parte and parte.split(':')[0]  # Si tiene ':' es un prefijo
+        return ":" in parte and parte.split(":")[0]  # Si tiene ':' es un prefijo
 
     # Verificar si el sujeto, verbo o objeto ya tienen prefijos
     if tiene_prefijo(sujeto):
-        click.echo(f"Advertencia: El sujeto '{sujeto}' ya tiene un prefijo. Por favor, ingrese el sujeto sin prefijo.")
+        click.echo(
+            f"Advertencia: El sujeto '{sujeto}' ya tiene un prefijo. Por favor, ingrese el sujeto sin prefijo."
+        )
         return
 
     if tiene_prefijo(objeto):
-        click.echo(f"Advertencia: El objeto '{objeto}' ya tiene un prefijo. Por favor, ingrese el objeto sin prefijo.")
+        click.echo(
+            f"Advertencia: El objeto '{objeto}' ya tiene un prefijo. Por favor, ingrese el objeto sin prefijo."
+        )
         return
 
     if tiene_prefijo(verbo):
-        click.echo(f"Advertencia: El verbo '{verbo}' ya tiene un prefijo. Por favor, ingrese el verbo sin prefijo.")
+        click.echo(
+            f"Advertencia: El verbo '{verbo}' ya tiene un prefijo. Por favor, ingrese el verbo sin prefijo."
+        )
         return
 
     # Asignar el prefijo 'q1:' a sujeto y objeto (por defecto), y 't1:' al verbo
@@ -73,7 +86,7 @@ def add(base_conocimiento, comando):
     objeto = f"q1:{objeto}"
 
     # Verificar si el verbo es un identificador de propiedad de Wikidata (ejemplo: P31, P131, ...)
-    if verbo.lower().startswith('p') and verbo[1:].isdigit():
+    if verbo.lower().startswith("p") and verbo[1:].isdigit():
         # Si el verbo comienza con 'P' seguido de números, asignamos el prefijo 'wdt:'
         verbo = f"wdt:{verbo}"
     else:
@@ -88,7 +101,9 @@ def add(base_conocimiento, comando):
         base_conocimiento.append(tripleta_con_prefijos)
         click.echo(f"Se ha añadido la afirmación: {tripleta_con_prefijos}")
     else:
-        click.echo(f"La afirmación {tripleta_con_prefijos} ya existe en la base de conocimiento.")
+        click.echo(
+            f"La afirmación {tripleta_con_prefijos} ya existe en la base de conocimiento."
+        )
 
 
 # Comando delete
@@ -105,7 +120,9 @@ def delete(base_conocimiento, comando):
 
     # Verificar que el comando tiene la estructura correcta
     if len(partes) != 4:
-        click.echo("El comando debe tener el formato: 'delete <sujeto> <verbo> <objeto>'")
+        click.echo(
+            "El comando debe tener el formato: 'delete <sujeto> <verbo> <objeto>'"
+        )
         return base_conocimiento
 
     # Extraer sujeto, verbo y objeto
@@ -116,7 +133,7 @@ def delete(base_conocimiento, comando):
     objeto = f"q1:{objeto}"
 
     # Verificar si el verbo es un identificador de propiedad de Wikidata (ejemplo: P31, P131, ...)
-    if verbo.lower().startswith('p') and verbo[1:].isdigit():
+    if verbo.lower().startswith("p") and verbo[1:].isdigit():
         # Si el verbo comienza con 'P' seguido de números, asignamos el prefijo 'wdt:'
         verbo = f"wdt:{verbo}"
     else:
@@ -131,7 +148,9 @@ def delete(base_conocimiento, comando):
         base_conocimiento.remove(tripleta)
         click.echo(f"Se ha eliminado la afirmación: {tripleta}")
     else:
-        click.echo(f"La afirmación {tripleta} no se encuentra en la base de conocimiento.")
+        click.echo(
+            f"La afirmación {tripleta} no se encuentra en la base de conocimiento."
+        )
 
     return base_conocimiento
 
@@ -143,7 +162,7 @@ def guardar_base_conocimiento(base_conocimiento, archivo):
     por sujeto, separadas por ';' y terminando cada conjunto con un '.'.
     Después de cada ';' o '.', se agrega un salto de línea.
     """
-    with open(archivo, 'w', encoding='utf-8') as f:
+    with open(archivo, "w", encoding="utf-8") as f:
         sujetos = {}
 
         # Agrupar las tripletas por sujeto
@@ -158,14 +177,15 @@ def guardar_base_conocimiento(base_conocimiento, archivo):
             for verbo, objeto in tripletas:
                 # Agrega cada tripleta con un salto de línea después del ';'
                 tripletas_str += f"{verbo} {objeto} ;\n"
-            
+
             # Elimina el último salto de línea después del último ';' y agrega el '.'
             tripletas_str = tripletas_str.rstrip(" ;\n") + " .\n"
-            
+
             # Escribir la tripleta del sujeto y las tripletas
             f.write(f"{sujeto} {tripletas_str}")
 
     click.echo(f"Base de conocimiento guardada en el archivo {archivo}.")
+
 
 def save(base_conocimiento, comando):
     """
@@ -190,6 +210,7 @@ def save(base_conocimiento, comando):
 
     return base_conocimiento
 
+
 def help():
     """
     Muestra una lista de los comandos disponibles y su descripción.
@@ -209,3 +230,60 @@ def help():
     """
     click.echo(ayuda)
 
+
+def procesar_resultados(resultados):
+    """
+    Convierte los resultados de la consulta SPARQL a tripletas (sujeto, verbo, objeto)
+    para poder generar un grafo.
+    
+    :param resultados: Lista de resultados de la consulta.
+    :return: Lista de tripletas (sujeto, verbo, objeto).
+    """
+    tripletas = []
+
+    # Iterar sobre los resultados
+    for resultado in resultados:
+        # Se espera que cada resultado sea un diccionario con claves correspondientes
+        # a los nombres de las variables en la consulta SPARQL (ej. ?jugador, ?equipo)
+        for sujeto, objeto in resultado.items():
+            # Asegurarse de que no se están generando tripletas incompletas
+            if sujeto and objeto:
+                tripletas.append((sujeto, 'relacion', objeto))  # Asumimos "relacion" como verbo genérico
+    
+    return tripletas
+
+def draw(resultados):
+    """
+    Dibuja un grafo basado en los resultados de la consulta.
+    
+    :param resultados: Lista de resultados de la consulta.
+    """
+    # Convertir los resultados a tripletas (sujeto, verbo, objeto)
+    tripletas = procesar_resultados(resultados)
+    
+    # Crear un grafo vacío
+    G = nx.Graph()
+
+    # Añadir nodos y aristas al grafo basados en las tripletas
+    for sujeto, verbo, objeto in tripletas:
+        G.add_node(sujeto)  # Añadir el sujeto como un nodo
+        G.add_node(objeto)  # Añadir el objeto como un nodo
+        G.add_edge(sujeto, objeto, label=verbo)  # Añadir la arista entre sujeto y objeto
+
+    # Posicionar los nodos usando un layout
+    pos = nx.spring_layout(G)
+
+    # Dibuja el grafo
+    plt.figure(figsize=(8, 6))
+    nx.draw(G, pos, with_labels=True, node_color='skyblue', node_size=3000, font_size=10, font_weight='bold')
+    
+    # Añadir las etiquetas de las aristas (verbos)
+    edge_labels = nx.get_edge_attributes(G, 'label')
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+
+    # Guardar el grafo como una imagen PNG
+    plt.title("Grafo de la Última Consulta")
+    plt.savefig("grafo_ultima_consulta.png")
+    plt.close()  # Cerrar la figura para liberar memoria
+
+    click.echo("El grafo ha sido guardado como 'grafo_ultima_consulta.png'.")
