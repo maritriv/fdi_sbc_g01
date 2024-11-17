@@ -1,5 +1,7 @@
 import re
 
+#Funciones necesarias para leer una consulta
+
 def procesar_select(consulta):
     """
     Procesa la parte SELECT de la consulta para extraer las variables.
@@ -91,6 +93,9 @@ def leer_consulta(consulta):
         'order_by': order_by
     }
 
+
+# Funciones necesarias para ejecutar una consulta
+
 def agrupar_tripletas_por_sujeto(base_conocimiento):
     """
     Agrupa las tripletas por sujeto.
@@ -113,10 +118,10 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
 
     resultados = []
 
-    # Agrupar las tripletas por jugador
+    # Agrupar las tripletas por sujeto
     sujetos = agrupar_tripletas_por_sujeto(base_conocimiento)
 
-     # Iterar sobre los sujetos
+    # Iterar sobre los sujetos
     for sujeto, tripletas_sujeto in sujetos.items():
         bindings = {}
         match = True
@@ -182,58 +187,7 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
     # Aplicar límite si `LIMIT` está definido
     if limit:
         resultados = resultados[:limit]
-    """
-    # Iterar sobre las tripletas en la base de conocimiento
-    for sujeto, verbo, objeto in base_conocimiento:
-        bindings = {}
-        match = True
-
-        # Evaluar cada condición en `WHERE`
-        for condicion in condiciones_where:
-            sujeto_cond, verbo_cond, objeto_cond = condicion
-
-            if sujeto_cond.startswith('?'):  # Es una variable
-                if sujeto_cond[1:] not in bindings:
-                    bindings[sujeto_cond[1:]] = sujeto
-                elif bindings[sujeto_cond[1:]] != sujeto:
-                    match = False
-            elif sujeto_cond != sujeto:
-                match = False
-
-            if verbo_cond.startswith('?'):  # Es una variable
-                if verbo_cond[1:] not in bindings:
-                    bindings[verbo_cond[1:]] = verbo
-                elif bindings[verbo_cond[1:]] != verbo:
-                    match = False
-            elif verbo_cond != verbo: 
-                match = False
-
-            if objeto_cond.startswith('?'):  # Es una variable
-                if objeto_cond[1:] not in bindings:
-                    bindings[objeto_cond[1:]] = objeto
-                elif bindings[objeto_cond[1:]] != objeto:
-                    match = False
-            elif objeto_cond != objeto:
-                match = False
-
-            if not match:
-                break
-
-        # Si las condiciones WHERE se cumplen, agregar el resultado
-        if match:
-            # Agregar solo las variables solicitadas en la consulta
-            resultado = {var: bindings.get(var, "") for var in variables}
-            resultados.append(resultado)
-
-    # Ordenar los resultados si `ORDER BY` está definido
-    if order_by:
-        variable, direction = order_by
-        reverse = direction.lower() == "desc"
-        resultados = sorted(resultados, key=lambda x: x.get(variable, ""), reverse=reverse)
-
-    # Aplicar límite si `LIMIT` está definido
-    if limit:
-        resultados = resultados[:limit]
-    """
-
+    
     return resultados
+
+

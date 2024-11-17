@@ -1,5 +1,8 @@
 # base_conocimiento.py
 
+import click
+
+# Funciones necesarias para cargar una base de conocimiento
 def cargar_tripleta_con_sujeto(partes):
     """
     Carga una tripleta con un sujeto explícito.
@@ -18,47 +21,16 @@ def cargar_tripleta_sin_sujeto(partes):
     objeto = partes[1]
     return (verbo, objeto)
 
-"""def cargar_base_conocimiento(archivo):
-    
-    Carga la base de conocimiento desde un archivo, procesando cada línea
-    en tripletas de la forma (sujeto, verbo, objeto).
-    
-    base_conocimiento = []
-    sujeto_actual = None
 
-    with open(archivo, 'r') as f:
-        for linea in f:
-            linea = linea.strip()
-            if linea.startswith("#") or not linea:
-                continue
-
-            partes = linea.split()
-            if len(partes) < 3:
-                continue
-
-            if sujeto_actual is None:
-                sujeto_actual, verbo, objeto = cargar_tripleta_con_sujeto(partes)
-            else:
-                verbo, objeto = cargar_tripleta_sin_sujeto(partes)
-
-            base_conocimiento.append((sujeto_actual, verbo, objeto))
-
-            if linea.endswith('.'):
-                sujeto_actual = None
-            elif linea.endswith(';'):
-                continue
-            else:
-                raise ValueError("Formato de línea inesperado: debe terminar en ';' o '.'")
-
-    return base_conocimiento
-"""
 def cargar_base_conocimiento(archivo, base_conocimiento, base_combinada):
     """
     Carga la base de conocimiento desde un archivo, procesando cada línea
-    en tripletas de la forma (sujeto, verbo, objeto).
+    en tripletas de la forma (sujeto, verbo, objeto), y agrupando las tripletas
+    de un mismo sujeto.
     """
+    sujetos = {}  # Diccionario para agrupar las tripletas por sujeto
     sujeto_actual = None
-    base_x = []
+
     with open(archivo, 'r') as f:
         for linea in f:
             linea = linea.strip()
@@ -76,8 +48,10 @@ def cargar_base_conocimiento(archivo, base_conocimiento, base_combinada):
 
             tripleta = (sujeto_actual, verbo, objeto)
 
-            if tripleta not in base_conocimiento and tripleta not in base_combinada and tripleta not in base_x:
-                base_x.append(tripleta)
+            # Agrupar las tripletas por sujeto
+            if sujeto_actual not in sujetos:
+                sujetos[sujeto_actual] = []
+            sujetos[sujeto_actual].append(tripleta)
 
             if linea.endswith('.'):
                 sujeto_actual = None
@@ -86,8 +60,15 @@ def cargar_base_conocimiento(archivo, base_conocimiento, base_combinada):
             else:
                 raise ValueError("Formato de línea inesperado: debe terminar en ';' o '.'")
 
+    # Al final, combinamos todas las tripletas agrupadas en una lista
+    base_x = []
+    for sujeto, tripletas_sujeto in sujetos.items():
+        base_x.extend(tripletas_sujeto)
+
     return base_x
 
+
+#Función para cargar más de una base de conocimiento a la vez
 def cargar_multiples_bases_conocimiento(archivos, base_conocimiento):
     """
     Carga y combina múltiples bases de conocimiento en una sola lista.
@@ -103,35 +84,22 @@ def cargar_multiples_bases_conocimiento(archivos, base_conocimiento):
             raise FileNotFoundError(f"No se encontró el archivo: {archivo}")
     return base_combinada
 
-def load(comando, base_conocimiento):
+def cargar_bases_conocimiento(archivos_base_conocimiento):
     """
-    Carga una base de conocimiento desde un archivo, evitando duplicados en el sistema.
+    Carga las bases de conocimiento desde los archivos especificados.
+
+    :param archivos_base_conocimiento: Lista de archivos a cargar.
+    :return: Lista combinada de bases de conocimiento.
     """
-    base_anadida = []
-    partes = comando.split(' ', 1)
-    archivos = partes[1].strip()
-    archivos = archivos.split()
-    base_anadida = cargar_multiples_bases_conocimiento(archivos, base_conocimiento)
-    print("OK!")
+    if not archivos_base_conocimiento:
+        click.echo("Debes especificar al menos un archivo de base de conocimiento.")
+        return []
 
-    return base_anadida
+    try:
+        return cargar_multiples_bases_conocimiento(archivos_base_conocimiento, [])
+    except FileNotFoundError as e:
+        click.echo(f"Error al cargar los archivos: {e}")
+        return []
 
 
-def imprimir_base_conocimiento(base_conocimiento):
-    """
-    Imprime todas las tripletas de la base de conocimiento con un formato alineado.
-    """
-    if not base_conocimiento:
-        print("La base de conocimiento está vacía.")
-        return
 
-    # Imprimir encabezado
-    print(f"{'Sujeto':<20} {'Verbo':<20} {'Objeto'}")
-    print("="*60)
-
-    # Imprimir cada tripleta
-    for tripleta in base_conocimiento:
-        if len(tripleta) == 3:
-            sujeto, verbo, objeto = tripleta
-            # Imprimir las tripletas con espacio alineado
-            print(f"{sujeto:<20} {verbo:<20} {objeto}")
