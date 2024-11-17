@@ -1,9 +1,9 @@
 # Sistema Basado en Conocimientos Interactivo
 
-Este proyecto es un sistema basado en conocimientos (SBC) interactivo desarrollado en Python. Permite gestionar una base de conocimiento estructurada mediante tripletas `(Sujeto, Verbo, Objeto)` y realizar consultas SPARQL simplificadas sobre ella.
-
-
 ![Logo de SPARQL](https://clhwogtywa.cloudimg.io/www.census.de/wp-content/uploads/sparql-logo-scaled.jpg)
+
+
+Este proyecto es un sistema basado en conocimientos (SBC) interactivo desarrollado en Python. Permite gestionar una base de conocimiento estructurada mediante tripletas `(Sujeto, Verbo, Objeto)` y realizar consultas SPARQL simplificadas sobre ella.
 
 ## Características
 
