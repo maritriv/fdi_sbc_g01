@@ -36,7 +36,7 @@ Para iniciar el sistema interactivo, ejecuta el archivo principal como este ejem
 
 En el modo interactivo, puedes usar los siguientes comandos:
 
-    SELECT: Ejecuta consultas SPARQL simplificadas sobre la base de conocimiento.
+SELECT: Ejecuta consultas SPARQL simplificadas sobre la base de conocimiento.
         
         Ejemplo:
 
@@ -83,3 +83,22 @@ HELP: Ayuda comandos del programa
     Ejemplo:
 
     help
+
+## Ejemplo de Uso
+
+Base de conocimiento inicial:
+
+"Sujeto"              "Verbo"         "Objeto"
+---------------------------------------------------
+"q1:courtois"        "wdt:P31"        "q1:jugador"
+"q1:courtois"        "t1:posicion"    "q1:portero"
+
+Consulta SPARQL:
+
+SELECT ?jugador WHERE { ?jugador wdt:P31 q1:portero }
+
+Resultado:
+
+?jugador
+--------------
+q1:courtois
