@@ -2,6 +2,10 @@
 
 Este proyecto es un sistema basado en conocimientos (SBC) interactivo desarrollado en Python. Permite gestionar una base de conocimiento estructurada mediante tripletas `(Sujeto, Verbo, Objeto)` y realizar consultas SPARQL simplificadas sobre ella.
 
+
+![Logo de SPARQL](![Logo de Python](https://www.python.org/static/community_logos/python-logo-master-v3-TM.png)
+)
+
 ## Características
 
 - **Carga, almacenamiento y guardado** de bases de conocimiento en formato de archivo (.txt), uno o varios archivos.
