@@ -23,7 +23,7 @@ def load(base_conocimiento, comando):
 
 def cargar_nueva_base(comando, base_conocimiento):
     """
-    Carga una base de conocimiento desde un archivo, evitando duplicados en el sistema.
+    Extrae el nombre de los archivos y carga una o varias bases de conocimiento
     """
     base_anadida = []
     partes = comando.split(' ', 1)
