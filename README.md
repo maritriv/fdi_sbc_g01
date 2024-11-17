@@ -112,3 +112,8 @@ Resultado:
     ?jugador
     --------------
     q1:courtois
+
+
+## Autores
+
+Hecho por Pablo Alonso Romero y Marina Triviño de las Heras
