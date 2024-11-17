@@ -94,6 +94,12 @@ HELP: Ayuda comandos del programa
 
     help
 
+DRAW: Dibuja la última consulta con sus relaciones
+
+    Ejemplo:
+
+    draw
+
 ## Ejemplo de Uso
 
 Base de conocimiento inicial:
