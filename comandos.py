@@ -2,7 +2,6 @@
 
 import click
 from base_conocimiento import cargar_multiples_bases_conocimiento
-
 # Comando load 
 # Función para cargar una base de conocimiento en tiempo real
 def load(base_conocimiento, comando):
