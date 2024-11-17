@@ -69,17 +69,19 @@ def add(base_conocimiento, comando):
         return
 
     # Asignar el prefijo 'q1:' a sujeto y objeto (por defecto), y 't1:' al verbo
-    sujeto_prefijado = f"q1:{sujeto}"
-    objeto_prefijado = f"q1:{objeto}"
+    sujeto = f"q1:{sujeto}"
+    objeto = f"q1:{objeto}"
 
-    # Si el verbo es especial, como P31 de Wikidata, asignar el prefijo 'wdt:'
-    if verbo.lower() == "P31".lower():
-        verbo_prefijado = f"wdt:{verbo}"
+    # Verificar si el verbo es un identificador de propiedad de Wikidata (ejemplo: P31, P131, ...)
+    if verbo.lower().startswith('p') and verbo[1:].isdigit():
+        # Si el verbo comienza con 'P' seguido de números, asignamos el prefijo 'wdt:'
+        verbo = f"wdt:{verbo}"
     else:
-        verbo_prefijado = f"t1:{verbo}"
+        # Para otros verbos, asignamos el prefijo 't1:'
+        verbo = f"t1:{verbo}"
 
     # Crear la tripleta con los prefijos
-    tripleta_con_prefijos = (sujeto_prefijado, verbo_prefijado, objeto_prefijado)
+    tripleta_con_prefijos = (sujeto, verbo, objeto)
 
     # Añadir la tripleta a la base de conocimiento, evitando duplicados
     if tripleta_con_prefijos not in base_conocimiento:
@@ -109,8 +111,17 @@ def delete(base_conocimiento, comando):
     # Extraer sujeto, verbo y objeto
     _, sujeto, verbo, objeto = partes
 
-    # Añadir el prefijo 't1:' al verbo
-    verbo = f"t1:{verbo}"
+    # Asignar el prefijo 'q1:' a sujeto y objeto (por defecto), y 't1:' al verbo
+    sujeto = f"q1:{sujeto}"
+    objeto = f"q1:{objeto}"
+
+    # Verificar si el verbo es un identificador de propiedad de Wikidata (ejemplo: P31, P131, ...)
+    if verbo.lower().startswith('p') and verbo[1:].isdigit():
+        # Si el verbo comienza con 'P' seguido de números, asignamos el prefijo 'wdt:'
+        verbo = f"wdt:{verbo}"
+    else:
+        # Para otros verbos, asignamos el prefijo 't1:'
+        verbo = f"t1:{verbo}"
 
     # Crear la tripleta a eliminar
     tripleta = (sujeto, verbo, objeto)

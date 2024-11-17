@@ -7,7 +7,8 @@ t1:goles "0" ;
 t1:asistencias "0" ;
 t1:paradas_partido "2.91" ;
 t1:anos_en_equipo "5" ;
-wdt:P31 q1:hombre .
+wdt:P31 q1:hombre ;
+wdt:P31 q1:mujer .
 q1:carvajal wdt:P31 q1:jugador ;
 wdt:P54 q1:real_madrid ;
 t1:posicion q1:defensa ;

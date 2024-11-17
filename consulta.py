@@ -1,5 +1,3 @@
-import re
-
 #Funciones necesarias para leer una consulta
 
 def procesar_select(consulta):
