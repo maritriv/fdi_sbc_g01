@@ -91,6 +91,7 @@ Base de conocimiento inicial:
 "Sujeto"              "Verbo"         "Objeto"
 ---------------------------------------------------
 "q1:courtois"        "wdt:P31"        "q1:jugador"
+
 "q1:courtois"        "t1:posicion"    "q1:portero"
 
 Consulta SPARQL:
