@@ -88,20 +88,20 @@ HELP: Ayuda comandos del programa
 
 Base de conocimiento inicial:
 
-"Sujeto"              "Verbo"         "Objeto"
----------------------------------------------------
-"q1:courtois"        "wdt:P31"        "q1:jugador"
+  "Sujeto"              "Verbo"         "Objeto"
+  ---------------------------------------------------
+  "q1:courtois"        "wdt:P31"        "q1:jugador"
 
-"q1:courtois"        "t1:posicion"    "q1:portero"
+  "q1:courtois"        "t1:posicion"    "q1:portero"
 
 
 Consulta SPARQL:
 
-SELECT ?jugador WHERE { ?jugador wdt:P31 q1:portero }
+  SELECT ?jugador WHERE { ?jugador wdt:P31 q1:portero }
 
 
 Resultado:
 
-?jugador
+  ?jugador
 --------------
 q1:courtois
