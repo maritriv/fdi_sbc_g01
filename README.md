@@ -18,6 +18,7 @@ Este proyecto es un sistema basado en conocimientos (SBC) interactivo desarrolla
 ## Estructura
 
 ├── comandos.py                          # Funciones para manipular la base de conocimiento (add, delete, load, save) y el help (guía de comandos posibles)
+
 ├── consulta.py                          # Lógica para procesar y ejecutar consultas SPARQL simplificadas
 ├── base_conocimiento.py                 # Funciones para cargar una o varias bases de conocimiento
 ├── utils.py                             # Funciones de utilidad, como impresión y gestión interactiva
