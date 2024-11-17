@@ -18,19 +18,12 @@ Este proyecto es un sistema basado en conocimientos (SBC) interactivo desarrolla
 ## Estructura
 
 ├── comandos.py                          # Funciones para manipular la base de conocimiento (add, delete, load, save) y el help (guía de comandos posibles)
-
 ├── consulta.py                          # Lógica para procesar y ejecutar consultas SPARQL simplificadas
-
 ├── base_conocimiento.py                 # Funciones para cargar una o varias bases de conocimiento
-
 ├── utils.py                             # Funciones de utilidad, como impresión y gestión interactiva
-
 ├── main.py                              # Archivo principal que ejecuta el sistema
-
 ├── base_conocimiento_real_madrid.txt    # Base de conocimiento del equipo Real Madrid
-
 ├── base_conocimiento_fc_barcelona.txt   # Base de conocimiento del equipo FC Barcelona
-
 └── README.md                            # Este archivo
 
 ## Ejecutar el sistema
