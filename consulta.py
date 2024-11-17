@@ -1,5 +1,6 @@
 # Funciones necesarias para leer una consulta
 
+
 def procesar_select(consulta):
     """
     Procesa la parte SELECT de la consulta para extraer las variables.
@@ -56,7 +57,6 @@ def procesar_limit(consulta):
     return None
 
 
-
 def leer_consulta(consulta):
     """
     Procesa y analiza una consulta SPARQL para extraer variables, condiciones WHERE y
@@ -75,6 +75,7 @@ def leer_consulta(consulta):
 
 # Funciones necesarias para ejecutar una consulta
 
+
 def agrupar_tripletas_por_sujeto(base_conocimiento):
     """
     Agrupa las tripletas por sujeto.
@@ -91,16 +92,16 @@ def ejecutar_consulta(base_conocimiento, consulta_parsed):
     """
     Ejecuta una consulta en la base de conocimiento utilizando los criterios proporcionados.
 
-    Esta función procesa una consulta SPARQL simplificada, aplicando los filtros y condiciones 
+    Esta función procesa una consulta SPARQL simplificada, aplicando los filtros y condiciones
     especificadas en la cláusula WHERE, y devuelve los resultados que cumplen con las condiciones.
 
-    :param base_conocimiento: Diccionario que representa la base de conocimiento, donde las claves 
+    :param base_conocimiento: Diccionario que representa la base de conocimiento, donde las claves
                                son los sujetos y los valores son las tripletas asociadas a esos sujetos.
     :param consulta_parsed: Diccionario que representa la consulta procesada, que contiene:
                             - "variables": una lista de las variables solicitadas en la consulta.
                             - "condiciones_where": una lista de tripletas de condiciones para la cláusula WHERE.
                             - "limit": el número máximo de resultados a devolver (opcional).
-    :return: Una lista de diccionarios, donde cada diccionario representa un conjunto de resultados con 
+    :return: Una lista de diccionarios, donde cada diccionario representa un conjunto de resultados con
              las variables solicitadas.
     """
     variables = consulta_parsed["variables"]

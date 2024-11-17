@@ -25,8 +25,8 @@ def cargar_base_conocimiento(archivo, tripletas_unicas):
             partes = linea.split()
             if len(partes) < 3:
                 continue
-            
-            # Línea con sujeto 
+
+            # Línea con sujeto
             if len(partes) == 4:
                 sujeto = partes[0]
                 verbo = partes[1]
@@ -36,7 +36,7 @@ def cargar_base_conocimiento(archivo, tripletas_unicas):
                     raise ValueError(
                         "No se puede interpretar la linea: falta el sujeto."
                     )
-                # Línea sin sujeto 
+                # Línea sin sujeto
                 verbo = partes[0]
                 objeto = partes[1]
 

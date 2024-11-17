@@ -81,11 +81,13 @@ def iniciar_bucle_interactivo(base_conocimiento):
     Inicia el bucle interactivo para recibir comandos del usuario.
     Permite consultas multilínea y guardar la última consulta para dibujar un grafo
     """
-    ultima_consulta_resultados = None  # Variable para almacenar los resultados de la última consulta
+    ultima_consulta_resultados = (
+        None  # Variable para almacenar los resultados de la última consulta
+    )
 
     while True:
-        consulta_completa = "" # Variable para almacenar las consultas multilíneas
-        
+        consulta_completa = ""  # Variable para almacenar las consultas multilíneas
+
         while True:
             comando = input("SBC_P3> ").strip()
 
@@ -104,7 +106,9 @@ def iniciar_bucle_interactivo(base_conocimiento):
                 print("Consulta completa recibida:")
                 print(consulta_completa)
                 # Procesamos la consulta completa
-                ultima_consulta_resultados = procesar_consulta(base_conocimiento, consulta_completa)
+                ultima_consulta_resultados = procesar_consulta(
+                    base_conocimiento, consulta_completa
+                )
                 break  # Salir del bucle de consultas
 
             # Comando 'help'
@@ -146,7 +150,9 @@ def iniciar_bucle_interactivo(base_conocimiento):
                 if ultima_consulta_resultados:
                     draw(ultima_consulta_resultados)
                 else:
-                    click.echo("No se ha realizado ninguna consulta aún o la consulta no ha producido resultados.")
+                    click.echo(
+                        "No se ha realizado ninguna consulta aún o la consulta no ha producido resultados."
+                    )
 
             # Comando no reconocido
             else:

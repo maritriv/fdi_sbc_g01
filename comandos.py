@@ -224,7 +224,8 @@ def help():
     4. 'delete <sujeto> <verbo> <objeto>' - Elimina una tripleta específica de la base de conocimiento.
     5. 'save <nombre_archivo>'   - Guarda la base de conocimiento actual en el archivo especificado.
     6. 'print_all' o 'imprimir_todo' - Imprime todas las tripletas de la base de conocimiento cargada.
-    7. 'exit'   - Sale del programa interactivo.
+    7. 'draw' - Dibuja un grafo de la última consulta mostrando su relacion.
+    8. 'exit'   - Sale del programa interactivo.
 
     Usa 'exit' para salir de la aplicación en cualquier momento.
     """
@@ -235,7 +236,7 @@ def procesar_resultados(resultados):
     """
     Convierte los resultados de la consulta SPARQL a tripletas (sujeto, verbo, objeto)
     para poder generar un grafo.
-    
+
     :param resultados: Lista de resultados de la consulta.
     :return: Lista de tripletas (sujeto, verbo, objeto).
     """
@@ -248,19 +249,22 @@ def procesar_resultados(resultados):
         for sujeto, objeto in resultado.items():
             # Asegurarse de que no se están generando tripletas incompletas
             if sujeto and objeto:
-                tripletas.append((sujeto, 'relacion', objeto))  # Asumimos "relacion" como verbo genérico
-    
+                tripletas.append(
+                    (sujeto, "relacion", objeto)
+                )  # Asumimos "relacion" como verbo genérico
+
     return tripletas
+
 
 def draw(resultados):
     """
     Dibuja un grafo basado en los resultados de la consulta.
-    
+
     :param resultados: Lista de resultados de la consulta.
     """
     # Convertir los resultados a tripletas (sujeto, verbo, objeto)
     tripletas = procesar_resultados(resultados)
-    
+
     # Crear un grafo vacío
     G = nx.Graph()
 
@@ -268,17 +272,27 @@ def draw(resultados):
     for sujeto, verbo, objeto in tripletas:
         G.add_node(sujeto)  # Añadir el sujeto como un nodo
         G.add_node(objeto)  # Añadir el objeto como un nodo
-        G.add_edge(sujeto, objeto, label=verbo)  # Añadir la arista entre sujeto y objeto
+        G.add_edge(
+            sujeto, objeto, label=verbo
+        )  # Añadir la arista entre sujeto y objeto
 
     # Posicionar los nodos usando un layout
     pos = nx.spring_layout(G)
 
     # Dibuja el grafo
     plt.figure(figsize=(8, 6))
-    nx.draw(G, pos, with_labels=True, node_color='skyblue', node_size=3000, font_size=10, font_weight='bold')
-    
+    nx.draw(
+        G,
+        pos,
+        with_labels=True,
+        node_color="skyblue",
+        node_size=3000,
+        font_size=10,
+        font_weight="bold",
+    )
+
     # Añadir las etiquetas de las aristas (verbos)
-    edge_labels = nx.get_edge_attributes(G, 'label')
+    edge_labels = nx.get_edge_attributes(G, "label")
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 
     # Guardar el grafo como una imagen PNG
