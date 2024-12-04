@@ -1,232 +1,57 @@
 # Base de Conocimiento de un equipo de fútbol
 
-# Las tripletas en este archivo están formadas por las siguientes propiedades:
-# wdt:P31: Indica el tipo de entidad (por ejemplo, si es un jugador, entrenador, equipo, etc.).
-# wdt:P54: Relación de "juega_en", que indica el equipo en el que juega el jugador.
-# wdt:P27: Relación de "nacionalidad", que indica la nacionalidad del jugador.
-# wdt:P131: Relación de "ubicado en", que indica la ubicación administrativa de un elemento, en este caso, el equipo Real Madrid.
-# wdt:P37: Relación de "idioma oficial", que indica el idioma oficial de un país.
+Courtois is a goalkeeper for Real Madrid. He is from Belgium, wears jersey number 1, and he has played for the team for five years. He makes an average of 2.91 saves per match and hasn’t scored any goals or made assists.
 
-# Definición de jugadores de fútbol
+Carvajal is a defender for Real Madrid. He is from Spain, wears jersey number 2, and he has played for the team for ten years. He has scored one goal and provided four assists.
 
-q1:courtois wdt:P31 q1:jugador ;          
-    wdt:P54 q1:real_madrid ;          
-    t1:posicion q1:portero ;
-    t1:dorsal "1" ;
-    wdt:P27 q1:belgica ;
-    t1:goles "0" ;
-    t1:asistencias "0" ;
-    t1:paradas_partido "2.91" ;
-    t1:anos_en_equipo "5" .
+Militao is a defender for Real Madrid. He is from Brazil, wears jersey number 3, and he has played for the team for four years. He has scored five goals without making any assists.
 
-q1:carvajal wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:defensa ;
-    t1:dorsal "2" ;
-    wdt:P27 q1:espana ;
-    t1:goles "1" ;
-    t1:asistencias "4" ;
-    t1:anos_en_equipo "10" .
+Vallejo is a defender for Real Madrid. He is from Spain, wears jersey number 18, and has played for the team for six years. He hasn’t scored any goals or made any assists.
 
-q1:militao wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:defensa ;
-    t1:dorsal "3" ;
-    wdt:P27 q1:brasil ;
-    t1:goles "5" ;
-    t1:asistencias "0" ;
-    t1:anos_en_equipo "4" .
+LucasVaz is a defender for Real Madrid. He is from Spain, wears jersey number 17, and has played for the team for eight years. He has scored two goals and provided three assists.
 
-q1:vallejo wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:defensa ;
-    t1:dorsal "18" ;
-    wdt:P27 q1:espana ;
-    t1:goles "0" ;
-    t1:asistencias "0" ;
-    t1:anos_en_equipo "6" .
+Rüdiger is a defender for Real Madrid. He is from Germany, wears jersey number 22, and has played for the team for two years. He has scored two goals and made one assist.
 
-q1:lucas_vazquez wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:defensa ;
-    t1:dorsal "17" ;
-    wdt:P27 q1:espana ;
-    t1:goles "2" ;
-    t1:asistencias "3" ;
-    t1:anos_en_equipo "8" .
+Mendy is a defender for Real Madrid. He is from France, wears jersey number 23, and has played for the team for four years. He hasn’t scored any goals but has provided two assists.
 
-q1:rudiger wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:defensa ;
-    t1:dorsal "22" ;
-    wdt:P27 q1:alemania ;
-    t1:goles "2" ;
-    t1:asistencias "1" ;
-    t1:anos_en_equipo "2" .
+Bellingham is a midfielder for Real Madrid. He is from England, wears jersey number 5, and has played for the team for two years. He has scored eight goals and provided five assists.
 
-q1:mendy wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:defensa ;
-    t1:dorsal "23" ;
-    wdt:P27 q1:francia ;
-    t1:goles "0" ;
-    t1:asistencias "2" ;
-    t1:anos_en_equipo "4" .
+Modric is a midfielder and the captain of Real Madrid. He is from Croatia, wears jersey number 10, and has played for the team for 11 years. He has scored six goals and provided nine assists.
 
-q1:bellingham wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:mediocampista ;
-    t1:dorsal "5" ;
-    wdt:P27 q1:inglaterra ;
-    t1:goles "8" ;
-    t1:asistencias "5" ;
-    t1:anos_en_equipo "2" .
+Valverde is a midfielder for Real Madrid. He is from Uruguay, wears jersey number 8, and has played for the team for six years. He has scored seven goals and made six assists.
 
-q1:modric wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:mediocampista ;
-    t1:dorsal "10" ;
-    wdt:P27 q1:croacia ;
-    t1:capitan_de q1:real_madrid ;
-    t1:goles "6" ;
-    t1:asistencias "9" ;
-    t1:anos_en_equipo "11" .
+Camavinga is a midfielder for Real Madrid. He is from France, wears jersey number 6, and has played for the team for three years. He has scored two goals and provided four assists.
 
-q1:valverde wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:mediocampista ;
-    t1:dorsal "8" ;
-    wdt:P27 q1:uruguay ;
-    t1:goles "7" ;
-    t1:asistencias "6" ;
-    t1:anos_en_equipo "6" .
+Tchouameni is a midfielder for Real Madrid. He is from France, wears jersey number 14, and has played for the team for three years. He has scored one goal and made two assists.
 
-q1:camavinga wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:mediocampista ;
-    t1:dorsal "6" ;
-    wdt:P27 q1:francia ;
-    t1:goles "2" ;
-    t1:asistencias "4" ;
-    t1:anos_en_equipo "3" .
+Ceballos is a midfielder for Real Madrid. He is from Spain, wears jersey number 19, and has played for the team for five years. He hasn’t scored any goals but has made two assists.
 
-q1:tchouameni wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:mediocampista ;
-    t1:dorsal "14" ;
-    wdt:P27 q1:francia ;
-    t1:goles "1" ;
-    t1:asistencias "2" ;
-    t1:anos_en_equipo "3" .
+Mbappe is a forward for Real Madrid. He is from France, wears jersey number 9, and has played for the team for one year. He has scored 35 goals and made 12 assists.
 
-q1:ceballos wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:mediocampista ;
-    t1:dorsal "19" ;
-    wdt:P27 q1:espana ;
-    t1:goles "0" ;
-    t1:asistencias "2" ;
-    t1:anos_en_equipo "5" .
+Vinícius Júnior is a forward for Real Madrid. He is from Brazil, wears jersey number 7, and has played for the team for five years. He has scored 23 goals and provided 18 assists.
 
-q1:mbappe wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:delantero ;
-    t1:dorsal "9" ;
-    wdt:P27 q1:francia ;
-    t1:goles "35" ;
-    t1:asistencias "12" ;
-    t1:anos_en_equipo "1" .
+Rodrygo is a forward for Real Madrid. He is from Brazil, wears jersey number 11, and has played for the team for four years. He has scored 19 goals and made 14 assists.
 
-q1:vini_jr wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:delantero ;
-    t1:dorsal "7" ;
-    wdt:P27 q1:brasil ;
-    t1:goles "23" ;
-    t1:asistencias "18" ;
-    t1:anos_en_equipo "5" .
+Endrick is a forward for Real Madrid. He is from Brazil, wears jersey number 16, and has played for the team for one year. He has scored four goals and made two assists.
 
-q1:rodrygo wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:delantero ;
-    t1:dorsal "11" ;
-    wdt:P27 q1:brasil ;
-    t1:goles "19" ;
-    t1:asistencias "14" ;
-    t1:anos_en_equipo "4" .
+Brahim is a forward for Real Madrid. He is from Spain, wears jersey number 21, and has played for the team for two years. He has scored three goals and provided five assists.
 
-q1:endrick wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:delantero ;
-    t1:dorsal "16" ;
-    wdt:P27 q1:brasil ;
-    t1:goles "4" ;
-    t1:asistencias "2" ;
-    t1:anos_en_equipo "1" .
+Ancelotti is the coach of Real Madrid. He is responsible for managing the team from the bench and has been with the club for five years.
 
-q1:brahim wdt:P31 q1:jugador ;
-    wdt:P54 q1:real_madrid ;
-    t1:posicion q1:delantero ;
-    t1:dorsal "21" ;
-    wdt:P27 q1:espana ;
-    t1:goles "3" ;
-    t1:asistencias "5" ;
-    t1:anos_en_equipo "2" .
+Real Madrid is a football team based in Spain. The club has won 15 Champions League titles.
 
+In football, the goalkeeper, defender, midfielder, and forward are key positions on the field. 
 
-# Definición del entrenador
+France is a country in Europe. The official language is French, and its capital is Paris.
 
-q1:ancelotti wdt:P31 q1:entrenador ;
-    t1:entrena_al q1:real_madrid ;
-    t1:posicion q1:banquillo ;
-    t1:anos_en_equipo "5" .
+Spain is a country in Europe. The official language is Spanish, and its capital is Madrid.
 
+Brazil is a country in South America. The official language is Portuguese, and its capital is Brasília.
 
-# Definición de equipo
+Germany is a country in Europe. The official language is German, and its capital is Berlin.
 
-q1:real_madrid wdt:P31 q1:equipo ;  
-    wdt:P131 q1:espana ;
-    t1:champions "15" .
+England is a country in Europe. The official language is English, and its capital is London.
 
-# Definición de posiciones y ubicaciones
+Croatia is a country in Europe. The official language is Croatian, and its capital is Zagreb.
 
-q1:portero wdt:P31 q1:posicion .
-q1:defensa wdt:P31 q1:posicion .
-q1:delantero wdt:P31 q1:posicion .     
-q1:mediocampista wdt:P31 q1:posicion . 
-q1:banquillo wdt:P31 q1:posicion .
-
-q1:francia wdt:P31 q1:pais ;         
-    wdt:P37 q1:frances ;
-    t1:capital q1:paris ;
-    t1:continente q1:europa .
-
-q1:espana wdt:P31 q1:pais ;          
-    wdt:P37 q1:espanol ;
-    t1:capital q1:madrid ;
-    t1:continente q1:europa .
-
-q1:brasil wdt:P31 q1:pais ;           
-    wdt:P37 q1:portugues ;
-    t1:capital q1:brasilia ;
-    t1:continente q1:america_del_sur .
-
-q1:alemania wdt:P31 q1:pais ;       
-    wdt:P37 q1:aleman ;
-    t1:capital q1:berlin ;
-    t1:continente q1:europa .
-
-q1:inglaterra wdt:P31 q1:pais ;       
-    wdt:P37 q1:ingles ;
-    t1:capital q1:londres ;
-    t1:continente q1:europa .
-
-q1:croacia wdt:P31 q1:pais ;        
-    wdt:P37 q1:croata ;
-    t1:capital q1:zagreb ;
-    t1:continente q1:europa .
-
-q1:uruguay wdt:P31 q1:pais ;         
-    wdt:P37 q1:espanol ;
-    t1:capital q1:montevideo ;
-    t1:continente q1:america_del_sur .
+Uruguay is a country in South America. The official language is Spanish, and its capital is Montevideo.
