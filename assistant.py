@@ -13,3 +13,5 @@ def query_model(query: str, knowledge_base: str) -> str:
 
     # Devolver la respuesta del modelo
     return response.message.content
+
+
