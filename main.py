@@ -1,7 +1,6 @@
 import click
 from assistant import query_model
 from knowledge_base import load_knowledge_base
-from conversation import extract_knowledge, update_knowledge_base
 
 @click.command()
 @click.argument('knowledge_base_file')
@@ -34,16 +33,8 @@ def main(knowledge_base_file: str):
         # Mostrar la respuesta del asistente
         print(f"Assistant: {answer}\n")
         
-        # Extraer nuevo conocimiento de la conversación
-        new_knowledge = extract_knowledge(query, answer)
-        
-        if new_knowledge:
-            # Actualizar la base de conocimiento
-            knowledge_base = update_knowledge_base(knowledge_base, new_knowledge)
-            
-            # Guardar la base de conocimiento actualizada sin mostrar mensaje
-            with open(knowledge_base_file, 'w') as file:
-                file.write(knowledge_base)
 
 if __name__ == "__main__":
     main()
+
+
