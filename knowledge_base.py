@@ -10,6 +10,9 @@ def load_knowledge_base(file_path: str) -> str:
     Returns:
         str: El contenido de la base de conocimiento como una cadena de texto.
     """
-    with open(file_path, 'r') as file:
-        return file.read()
+    try:
+        with open(file_path, 'r') as file:
+            return file.read()
+    except FileNotFoundError:
+        return "The specified knowledge base file was not found."
 

@@ -1,7 +1,7 @@
 from ollama import chat, ChatResponse
 
 # Función para consultar el modelo de lenguaje con un contexto de base de conocimiento
-def query_model(query: str, knowledge_base: str) -> str:
+def query_model(query: str, knowledge_base: str, model: str) -> str:   
     """
     Consulta el modelo de lenguaje utilizando un contexto de base de conocimiento
     y genera una respuesta con lenguaje natural y razonado.
@@ -23,12 +23,15 @@ def query_model(query: str, knowledge_base: str) -> str:
         "Answer (in natural, conversational style):"
     )
 
-    # Hacer la consulta al modelo de lenguaje
-    response: ChatResponse = chat(model='llama3.2:1b', messages=[{
-        'role': 'user',
-        'content': prompt
-    }])
 
-    # Devolver la respuesta del modelo
-    return response.message.content.strip()
+    # Hacer la consulta al modelo de lenguaje
+    try:
+        response: ChatResponse = chat(
+            model=model,
+            messages=[{'role': 'user', 'content': prompt}]
+        )
+        # Devolver la respuesta del modelo
+        return response.message.content.strip()
+    except Exception as e:
+        return f"An error occurred while querying the model: {e}"
 
