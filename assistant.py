@@ -13,22 +13,16 @@ def query_model(query: str, knowledge_base: str, model: str) -> str:
     Returns:
         str: La respuesta generada por el modelo de lenguaje.
     """
-    # Construir un prompt enfocado en respuestas naturales pero precisas
-    prompt = (
-        "You are a knowledgeable assistant. Use the following knowledge base to answer the user's question. "
-        "Respond clearly and directly, but in a conversational tone. Avoid bullet points or numbered lists unless necessary. "
-        "Focus on delivering a helpful and accurate answer in fluent English, while maintaining a natural flow.\n\n"
-        f"Knowledge Base:\n{knowledge_base}\n\n"
-        f"User's Question: {query}\n"
-        "Answer (in natural, conversational style):"
-    )
-
 
     # Hacer la consulta al modelo de lenguaje
     try:
         response: ChatResponse = chat(
             model=model,
-            messages=[{'role': 'user', 'content': prompt}]
+            messages=[{'role': 'system', 'content': "You are a knowledgeable assistant. Use the following knowledge base to answer the user's question. "
+                        "Respond clearly and directly, but in a conversational tone. Avoid bullet points or numbered lists unless necessary." "Answer (in natural, conversational style):"}, 
+                        {'role': 'system', 'content': "Focus on delivering a helpful and accurate answer in fluent English, while maintaining a natural flow.\n\n"
+                        f"Knowledge Base:\n{knowledge_base}\n\n"},
+                        {'role': 'user', 'content': f"User's Question: {query}\n"}]
         )
         # Devolver la respuesta del modelo
         return response.message.content.strip()

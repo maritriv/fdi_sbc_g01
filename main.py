@@ -1,6 +1,7 @@
 import click
 from assistant import query_model
 from knowledge_base import load_knowledge_base
+from rag import rag
 
 @click.command()
 @click.argument('knowledge_base_file', type=click.Path(exists=True))
@@ -42,8 +43,10 @@ def main(knowledge_base_file: str, model: str, verbose: bool):
             click.echo(f"[INFO] Query received: {query}")
             click.echo(f"[INFO] Querying the model {model}...")
         
+        relevant_info = rag(query, knowledge_base, model)
+        
         # Generar la respuesta del asistente utilizando el modelo de lenguaje
-        answer = query_model(query, knowledge_base, model)
+        answer = query_model(query, relevant_info, model)
         
         # Mostrar la respuesta del asistente
         print(f"Assistant: {answer}\n")
