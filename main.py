@@ -1,7 +1,7 @@
 import click
 from assistant import query_model
 from knowledge_base import load_knowledge_base
-from rag import rag
+from rag import rag, rag_query
 
 @click.command()
 @click.argument('knowledge_base_file', type=click.Path(exists=True))
@@ -28,6 +28,11 @@ def main(knowledge_base_file: str, model: str, verbose: bool):
     
     print("Hello! I am your virtual assistant. You can ask me anything.")
     print("Type 'exit' to end the conversation.\n")
+
+    if verbose:
+        click.echo(f"[INFO] Processing data from {knowledge_base_file}...")
+
+    entities = rag(knowledge_base, model)
     
     # Bucle de conversación
     while True:
@@ -43,7 +48,7 @@ def main(knowledge_base_file: str, model: str, verbose: bool):
             click.echo(f"[INFO] Query received: {query}")
             click.echo(f"[INFO] Querying the model {model}...")
         
-        relevant_info = rag(query, knowledge_base, model)
+        relevant_info = rag_query(query, entities, model)
         
         # Generar la respuesta del asistente utilizando el modelo de lenguaje
         answer = query_model(query, relevant_info, model)

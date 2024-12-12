@@ -1,7 +1,8 @@
 #rag.py
 import click
+from ollama import chat, ChatResponse
 
-def rag(query: str, knowledge_base: str, model: str): 
+def rag(knowledge_base: str, model: str): 
     # Divide la base de conocimiento en párrafos
     paragraph = knowledge_base.split("\n\n")
     entities = {}
@@ -13,8 +14,7 @@ def rag(query: str, knowledge_base: str, model: str):
                 model=model,
                 messages=[{'role': 'system', 'content': "You are a knowledgeable assistant."
                             "Return me a list with the names of people, places or organizations in this text"
-                            f"Knowledge Base:\n{paragraph[i]}\n\n"},
-                            {'role': 'user', 'content': f"User's Question: {query}\n"}]
+                            f"Knowledge Base:\n{paragraph[i]}\n\n"}]
             )
             # Devolver la respuesta del modelo
             entities_per_paragraph = response.message.content.strip()
@@ -25,13 +25,7 @@ def rag(query: str, knowledge_base: str, model: str):
         for e in entities_per_paragraph:
             entities[e] = paragraph[i]
 
-
-    answer = rag_query(query, entities, model)
-
-    if verbose:
-            click.echo(f"[INFO] Query received: {answer}")
-
-    return answer
+    return entities
 
 
 def rag_query(query: str, entities, model: str): 
