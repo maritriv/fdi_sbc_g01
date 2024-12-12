@@ -13,11 +13,13 @@ def rag(knowledge_base: str, model: str):
             response: ChatResponse = chat(
                 model=model,
                 messages=[{'role': 'system', 'content': "You are a knowledgeable assistant."
-                            "Return me a list with the names of people, places or organizations in this text"
-                            f"Knowledge Base:\n{paragraph[i]}\n\n"}]
+                            "Analyze the following text and return only a plain Python-style list of entities (names of people, places, or organizations) found in it. "
+                            "The response must strictly be in the format: entity1, entity2, entity3, ... "
+                            "Do not add any numbers, introductory text, explanations, or additional formatting—just the list."
+                            f"\n\nText:\n{paragraph[i]}"}]
             )
             # Devolver la respuesta del modelo
-            entities_per_paragraph = response.message.content.strip()
+            entities_per_paragraph = response.message.content.split(',' and '\n')
         except Exception as e:
             return f"An error occurred while querying the model: {e}"
 
@@ -26,7 +28,6 @@ def rag(knowledge_base: str, model: str):
             entities[e] = paragraph[i]
 
     return entities
-
 
 def rag_query(query: str, entities, model: str): 
     # Hacer la consulta al modelo de lenguaje
