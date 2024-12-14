@@ -48,6 +48,9 @@ def main(knowledge_base_file: str, model: str, verbose: bool):
             click.echo(f"[INFO] Query received: {query}")
             click.echo(f"[INFO] Querying the model {model}...")
         
+        if verbose:
+            click.echo(f"[INFO] Processing query...")
+            
         relevant_info = rag_query(query, entities, model)
         
         # Generar la respuesta del asistente utilizando el modelo de lenguaje
