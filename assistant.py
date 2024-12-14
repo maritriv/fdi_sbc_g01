@@ -1,8 +1,11 @@
 from ollama import chat, ChatResponse
 from chain_of_thought import chain_of_thought
 
+
 # Función para consultar el modelo de lenguaje con un contexto de base de conocimiento
-def query_model(query: str, knowledge_base: str, model: str) -> str:   
+def query_model(
+    query: str, knowledge_base: str, conversation_context: str, model: str
+) -> str:
     """
     Consulta el modelo de lenguaje utilizando un contexto de base de conocimiento
     y genera una respuesta con lenguaje natural y razonado.
@@ -16,7 +19,7 @@ def query_model(query: str, knowledge_base: str, model: str) -> str:
     """
 
     # Hacer la consulta al modelo de lenguaje
-     # Contexto para generar respuestas interpretativas
+    # Contexto para generar respuestas interpretativas
     system_context = (
         "You are a thoughtful and knowledgeable assistant. Use the following knowledge base to help the user with their question. "
         "Your responses should not only answer the question but also explain the reasoning behind the answer. "
@@ -33,10 +36,14 @@ def query_model(query: str, knowledge_base: str, model: str) -> str:
         response: ChatResponse = chat(
             model=model,
             messages=[
-                {'role': 'system', 'content': system_context},
-                {'role': 'system', 'content': f"Knowledge Base:\n{knowledge_base}\n"},
-                {'role': 'user', 'content': f"User's Question: {query}\n"}
-            ]
+                {"role": "system", "content": system_context},
+                {"role": "system", "content": f"Knowledge Base:\n{knowledge_base}\n"},
+                {
+                    "role": "system",
+                    "content": f"Conversation context:\n{conversation_context}\n",
+                },
+                {"role": "user", "content": f"User's Question: {query}\n"},
+            ],
         )
         # Devolver la respuesta del modelo
         response = response.message.content.strip()
@@ -44,4 +51,3 @@ def query_model(query: str, knowledge_base: str, model: str) -> str:
         return refined_response
     except Exception as e:
         return f"An error occurred while querying the model: {e}"
-

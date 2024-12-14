@@ -1,9 +1,10 @@
-#chain_of_thought.py
+# chain_of_thought.py
 
 from ollama import chat, ChatResponse
 
+
 # Función para consultar el modelo de lenguaje con un contexto de base de conocimiento
-def chain_of_thought(response: str, model: str) -> str:   
+def chain_of_thought(response: str, model: str) -> str:
     """
     Consulta el modelo de lenguaje utilizando un contexto de base de conocimiento
     y genera una respuesta con lenguaje natural y razonado.
@@ -27,9 +28,9 @@ def chain_of_thought(response: str, model: str) -> str:
         refined_response: ChatResponse = chat(
             model=model,
             messages=[
-                {'role': 'system', 'content': system_context},
-                {'role': 'user', 'content': f"Previous Response: {response}\n"}
-            ]
+                {"role": "system", "content": system_context},
+                {"role": "user", "content": f"Previous Response: {response}\n"},
+            ],
         )
 
         # Devolver la respuesta refinada
