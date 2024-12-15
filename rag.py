@@ -4,7 +4,7 @@ from ollama import chat, ChatResponse
 
 
 def rag(knowledge_base: str, model: str):
-    # Divide la base de conocimiento en párrafos
+    """Divide la base de conocimiento en párrafos"""
     paragraph = knowledge_base.split("\n\n")
     entities = {}
     for i in range(len(paragraph)):
@@ -36,7 +36,7 @@ def rag(knowledge_base: str, model: str):
 
 
 def rag_query(query: str, entities, model: str):
-    # Hacer la consulta al modelo de lenguaje
+    """Se hace la consulta al modelo de lenguaje"""
     try:
         response: ChatResponse = chat(
             model=model,
