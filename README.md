@@ -2,6 +2,7 @@
 
 ![Alt text](https://static.vecteezy.com/system/resources/previews/023/485/861/non_2x/talking-robot-graphic-clipart-design-free-png.png)
 
+
 This project implements a command-line virtual assistant powered by a knowledge base and a language model. The assistant provides detailed, conversational answers and supports reasoning by leveraging the knowledge base and the language model for queries.
 
 ## Features
