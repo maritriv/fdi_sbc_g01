@@ -1,0 +1,47 @@
+# Base de conocimiento para Gestión de Viajes y Turismo
+
+# Destinos
+destino_ideal_verano :- clima_calido, playa, baja_lluvia, alta_demanda [0.9]
+destino_ideal_invierno :- nieve, montaña, actividades_invernales [0.8]
+destino_aventura :- actividades_extremas, naturaleza, clima_apropiado [0.85]
+destino_relajacion :- spa, naturaleza, baja_multitud, entorno_tranquilo [0.9]
+destino_cultural :- actividad_cultural, historia, guias_expertos, atracciones_conocidas [0.95]
+
+# Actividades
+actividad_extrema :- escalada, rafting, parapente, clima_apropiado [0.8]
+actividad_cultural :- museos, arquitectura, historia [0.9]
+actividad_relajante :- spa, yoga, naturaleza [0.85]
+actividad_familiar :- parques_tematicos, senderismo_familiar, naturaleza [0.8]
+actividad_nocturna :- vida_nocturna, eventos_locales [0.7]
+
+# Recomendaciones
+viajar_en_temporada_baja :- ahorro_costos, baja_multitud [0.85]
+reservar_con_anticipacion :- evitar_sobrecosto, disponibilidad_garantizada [0.95]
+llevar_equipamiento :- destino_aventura, clima_extremo, escalada [0.8]
+buscar_guias_locales :- actividad_cultural, destinos_desconocidos, idioma_local [0.9]
+proteger_documentos :- viajar_internacional, pasaporte, visas [0.9]
+
+# Cadenas
+clima_calido :- baja_lluvia, sol_constante [0.9]
+playa :- arena_blanca, clima_calido, actividades_acuaticas [0.8]
+montaña :- naturaleza, clima_frio, actividades_invernales [0.85]
+baja_multitud :- temporada_baja, evitar_turismo_masivo [0.8]
+alta_demanda :- temporada_verano, promociones, destinos_populares [0.75]
+
+# Detalles de cadenas complejas
+sol_constante :- estacion_seca, alta_temperatura [0.9]
+arena_blanca :- formacion_geologica, limpieza_regular [0.85]
+actividades_acuaticas :- snorkeling, kayak, natacion [0.8]
+naturaleza :- fauna_rica, paisajes_unicos, biodiversidad_protegida [0.85]
+entorno_tranquilo :- aislamiento, ruido_bajo, seguridad_alta [0.9]
+
+# Hechos adicionales
+estacion_seca [0.9]
+alta_temperatura [0.85]
+formacion_geologica [0.8]
+limpieza_regular [0.75]
+fauna_rica [0.8]
+paisajes_unicos [0.85]
+biodiversidad_protegida [0.9]
+temporada_baja [0.85]
+destinos_populares [0.8]
