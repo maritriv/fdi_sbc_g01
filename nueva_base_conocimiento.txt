@@ -17,15 +17,15 @@ estiramientos :- flexibilidad, movilidad_articular [0.85].
 ## Beneficios para la salud
 alta_resistencia :- entrenamiento_continuo, descanso_adecuado [0.9].
 ritmo_constante :- concentracion, control_respiracion [0.85].
-equilibrio_fuerza :- estabilidad_cuerpo, postura_correcta [0.8].
-flexibilidad :- movilidad_articular, constancia [0.9].
+equilibrio_fuerza :- movilidad_articular, postura_correcta [0.8].
+flexibilidad :- constancia [0.9].
 
 ## Hábitos de apoyo
-descanso_adecuado :- sueño_prolongado, horarios_regulares [0.85].
+descanso_adecuado :- horarios_regulares [0.85].
 control_respiracion :- respiracion_controlada, constancia [0.8].
-movilidad_articular :- ejercicios_basicos, calentamiento [0.9].
-postura_correcta :- ejercicios_de_postura, constancia [0.85].
+movilidad_articular :- calentamiento [0.9].
+postura_correcta :- constancia [0.85].
 
 ## Ejemplo de combinaciones
-ritmo_moderado :- caminar_largo_plazo, concentracion [0.8].
-entrenamiento_continuo :- planificacion, constancia [0.85].
+ritmo_moderado :- concentracion [0.8].
+entrenamiento_continuo :- constancia [0.85].
