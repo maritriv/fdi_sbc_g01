@@ -1,6 +1,6 @@
 # Base de conocimiento para Gestión de Viajes y Turismo
 
-# Destinos
+# Destinose
 destino_ideal_verano :- clima_calido, playa, baja_lluvia, alta_demanda [0.9]
 destino_ideal_invierno :- nieve, montaña, actividades_invernales [0.8]
 destino_aventura :- actividades_extremas, naturaleza, clima_apropiado [0.85]
