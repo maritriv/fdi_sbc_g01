@@ -78,7 +78,6 @@ def add(base_conocimiento, comando):
             # Para otros verbos, asignamos el prefijo 't1:'
             verbo = f"t1:{verbo}"
 
-
     # Crear la tripleta con los prefijos
     tripleta_con_prefijos = (sujeto, verbo, objeto)
 
