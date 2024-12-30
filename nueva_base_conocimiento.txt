@@ -1,38 +1,31 @@
-# Base de conocimiento sobre viajes y destinos
+# Base de conocimiento sobre actividades físicas y salud
 
-# Destinos ideales según preferencias
-destino_playa :- clima_calido, actividades_acuaticas, entorno_tranquilo, playa [0.9].
-destino_montana :- clima_frio, entorno_tranquilo [0.85].
-destino_aventura :- actividades_extremas, guia_experto [0.8].
-destino_cultural :- museos, tradiciones_locales [0.9].
-destino_relajante :- spa, entorno_tranquilo [0.85].
+## Actividades Físicas
+entrenamiento_intenso :- actividad_cardio, fortalecimiento_muscular [0.9].
+entrenamiento_moderado :- caminata, yoga [0.85].
+entrenamiento_ligero :- estiramientos, caminata [0.8].
 
-# Detalles de condiciones
-clima_calido :- alta_temperatura, sol_constante [0.85].
-clima_frio :- bajas_temperaturas [0.8].
-entorno_tranquilo :- baja_multitud, ruido_bajo [0.8].
-actividades_acuaticas :- natacion, snorkel [0.9].
-actividades_extremas :- rafting, escalada [0.85].
-actividades_extremas :- snorkel [0.8].
+## Recomendaciones de Actividad
+actividad_cardio :- correr, alta_resistencia [0.9].
+actividad_cardio :- nadar, ritmo_constante [0.85].
+fortalecimiento_muscular :- pesas, alta_resistencia [0.9].
+fortalecimiento_muscular :- calistenia, equilibrio_fuerza [0.8].
+caminata :- ruta_segura, ritmo_moderado [0.85].
+yoga :- meditacion, respiracion_controlada [0.9].
+estiramientos :- flexibilidad, movilidad_articular [0.85].
 
-# Actividades complementarias
-playa :- alta_temperatura, agua .
+## Beneficios para la salud
+alta_resistencia :- entrenamiento_continuo, descanso_adecuado [0.9].
+ritmo_constante :- concentracion, control_respiracion [0.85].
+equilibrio_fuerza :- estabilidad_cuerpo, postura_correcta [0.8].
+flexibilidad :- movilidad_articular, constancia [0.9].
 
-vistas_panoramicas :- rutas_seguras, paisajes_unicos [0.9].
-tradiciones_locales :- gastronomia_tipica, mercados_artesanales [0.85].
-spa :- servicios_lujo, aguas_terapeuticas [0.8].
-guia_experto :- experiencia, certificacion [0.85].
+## Hábitos de apoyo
+descanso_adecuado :- sueño_prolongado, horarios_regulares [0.85].
+control_respiracion :- respiracion_controlada, constancia [0.8].
+movilidad_articular :- ejercicios_basicos, calentamiento [0.9].
+postura_correcta :- ejercicios_de_postura, constancia [0.85].
 
-# Hechos básicos
-alta_temperatura [0.9].
-sol_constante [0.85].
-bajas_temperaturas [0.8].
-altitud_elevada [0.85].
-natacion [0.9].
-snorkel [0.8].
-rafting [0.8].
-escalada [0.85].
-gastronomia_tipica [0.85].
-mercados_artesanales [0.9].
-servicios_lujo [0.8].
-aguas_terapeuticas [0.8].
+## Ejemplo de combinaciones
+ritmo_moderado :- caminar_largo_plazo, concentracion [0.8].
+entrenamiento_continuo :- planificacion, constancia [0.85].
