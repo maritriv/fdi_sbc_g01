@@ -14,6 +14,7 @@ def procesar_select(consulta):
         select_part = select_part.split("where")[0].strip()
 
     variables = [var.strip("?") for var in select_part.split() if var.startswith("?")]
+    variables = [var.strip(",") if var.endswith(",") else var for var in variables]
     return variables
 
 
