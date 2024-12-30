@@ -1,31 +1,31 @@
 # Base de conocimiento sobre actividades físicas y salud
 
 ## Actividades Físicas
-entrenamiento_intenso :- actividad_cardio, fortalecimiento_muscular [0.9].
-entrenamiento_moderado :- caminata, yoga, estiramientos, actividad_cardio [0.85].
-entrenamiento_ligero :- estiramientos, caminata [0.8].
+entrenamiento_intenso :- actividad_cardio, fortalecimiento_muscular [0.9]
+entrenamiento_moderado :- caminata, yoga, estiramientos, actividad_cardio [0.85]
+entrenamiento_ligero :- estiramientos, caminata [0.8]
 
 ## Recomendaciones de Actividad
-actividad_cardio :- correr, alta_resistencia [0.9].
-actividad_cardio :- nadar, ritmo_constante [0.85].
-fortalecimiento_muscular :- pesas, alta_resistencia [0.9].
-fortalecimiento_muscular :- calistenia, equilibrio_fuerza [0.8].
-caminata :- ruta_segura, ritmo_moderado [0.85].
-yoga :- meditacion, respiracion_controlada [0.9].
-estiramientos :- flexibilidad, movilidad_articular [0.85].
+actividad_cardio :- correr, alta_resistencia [0.9]
+actividad_cardio :- nadar, ritmo_constante [0.85]
+fortalecimiento_muscular :- pesas, alta_resistencia [0.9]
+fortalecimiento_muscular :- calistenia, equilibrio_fuerza [0.8]
+caminata :- ruta_segura, ritmo_moderado [0.85]
+yoga :- meditacion, respiracion_controlada [0.9]
+estiramientos :- flexibilidad, movilidad_articular [0.85]
 
 ## Beneficios para la salud
-alta_resistencia :- entrenamiento_continuo, descanso_adecuado [0.9].
-ritmo_constante :- concentracion, control_respiracion [0.85].
-equilibrio_fuerza :- movilidad_articular, postura_correcta [0.8].
-flexibilidad :- constancia [0.9].
+alta_resistencia :- entrenamiento_continuo, descanso_adecuado [0.9]
+ritmo_constante :- concentracion, control_respiracion [0.85]
+equilibrio_fuerza :- movilidad_articular, postura_correcta [0.8]
+flexibilidad :- constancia [0.9]
 
 ## Hábitos de apoyo
-descanso_adecuado :- horarios_regulares [0.85].
-control_respiracion :- respiracion_controlada, constancia [0.8].
-movilidad_articular :- calentamiento [0.9].
-postura_correcta :- constancia [0.85].
+descanso_adecuado :- horarios_regulares [0.85]
+control_respiracion :- respiracion_controlada, constancia [0.8]
+movilidad_articular :- calentamiento [0.9]
+postura_correcta :- constancia [0.85]
 
 ## Ejemplo de combinaciones
-ritmo_moderado :- concentracion [0.8].
-entrenamiento_continuo :- constancia [0.85].
+ritmo_moderado :- concentracion [0.8]
+entrenamiento_continuo :- constancia [0.85]
