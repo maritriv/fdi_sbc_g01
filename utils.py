@@ -85,7 +85,9 @@ def iniciar_bucle_interactivo(base_conocimiento):
         None  # Variable para almacenar los resultados de la última consulta
     )
 
-    while True:
+    bucle = True
+
+    while bucle:
         consulta_completa = ""  # Variable para almacenar las consultas multilíneas
 
         while True:
@@ -130,6 +132,7 @@ def iniciar_bucle_interactivo(base_conocimiento):
             # Comando de salida
             elif comando.lower() == "exit":
                 click.echo("Saliendo del programa...")
+                bucle = False
                 break
 
             # Procesar comando 'add'

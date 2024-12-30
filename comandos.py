@@ -63,35 +63,21 @@ def add(base_conocimiento, comando):
         return ":" in parte and parte.split(":")[0]  # Si tiene ':' es un prefijo
 
     # Verificar si el sujeto, verbo o objeto ya tienen prefijos
-    if tiene_prefijo(sujeto):
-        click.echo(
-            f"Advertencia: El sujeto '{sujeto}' ya tiene un prefijo. Por favor, ingrese el sujeto sin prefijo."
-        )
-        return
+    if not tiene_prefijo(sujeto):
+        sujeto = f"q1:{sujeto}"
 
-    if tiene_prefijo(objeto):
-        click.echo(
-            f"Advertencia: El objeto '{objeto}' ya tiene un prefijo. Por favor, ingrese el objeto sin prefijo."
-        )
-        return
+    if not tiene_prefijo(objeto):
+        objeto = f"q1:{objeto}"
 
-    if tiene_prefijo(verbo):
-        click.echo(
-            f"Advertencia: El verbo '{verbo}' ya tiene un prefijo. Por favor, ingrese el verbo sin prefijo."
-        )
-        return
+    if not tiene_prefijo(verbo):
+        # Verificar si el verbo es un identificador de propiedad de Wikidata (ejemplo: P31, P131, ...)
+        if verbo.lower().startswith("p") and verbo[1:].isdigit():
+            # Si el verbo comienza con 'P' seguido de números, asignamos el prefijo 'wdt:'
+            verbo = f"wdt:{verbo}"
+        else:
+            # Para otros verbos, asignamos el prefijo 't1:'
+            verbo = f"t1:{verbo}"
 
-    # Asignar el prefijo 'q1:' a sujeto y objeto (por defecto), y 't1:' al verbo
-    sujeto = f"q1:{sujeto}"
-    objeto = f"q1:{objeto}"
-
-    # Verificar si el verbo es un identificador de propiedad de Wikidata (ejemplo: P31, P131, ...)
-    if verbo.lower().startswith("p") and verbo[1:].isdigit():
-        # Si el verbo comienza con 'P' seguido de números, asignamos el prefijo 'wdt:'
-        verbo = f"wdt:{verbo}"
-    else:
-        # Para otros verbos, asignamos el prefijo 't1:'
-        verbo = f"t1:{verbo}"
 
     # Crear la tripleta con los prefijos
     tripleta_con_prefijos = (sujeto, verbo, objeto)
