@@ -1,47 +1,70 @@
 # Base de conocimiento para Gestión de Viajes y Turismo
 
 # Destinos
-destino_ideal_verano :- clima_calido, playa, baja_lluvia, alta_demanda [0.9]
-destino_ideal_invierno :- nieve, montaña, actividades_invernales [0.8]
-destino_aventura :- actividades_extremas, naturaleza, clima_apropiado [0.85]
-destino_relajacion :- spa, naturaleza, baja_multitud, entorno_tranquilo [0.9]
-destino_cultural :- actividad_cultural, historia, guias_expertos, atracciones_conocidas [0.95]
+destino_ideal_verano :- clima_calido, playa, alta_demanda [0.9].  
+clima_calido :- baja_lluvia, sol_constante [0.8].  
+baja_lluvia :- sol_constante, vientos_modestos [0.85].  
+sol_constante :- estacion_seca [0.9].  
+estacion_seca :- radiacion_alta [0.95].  
+
+destino_ideal_invierno :- nieve, actividades_invernales, baja_multitud [0.85].  
+nieve :- clima_frio, altitud_elevada [0.9].  
+clima_frio :- montaña, bajas_temperaturas [0.8].  
+montaña :- fauna_rica, biodiversidad_protegida [0.85].  
+fauna_rica :- habitats_diversos [0.9].  
+
+destino_aventura :- actividades_extremas, clima_apropiado, guia_experto [0.85].  
+actividades_extremas :- escalada, rafting, parapente [0.8].  
+escalada :- equipamiento_especializado [0.75].  
+equipamiento_especializado :- rutas_seguras, mapas_detallados [0.9].  
+rutas_seguras :- guias_capacitados [0.95].  
+
+destino_relajacion :- spa, naturaleza, baja_multitud [0.9].  
+spa :- entorno_tranquilo, servicios_lujo [0.85].  
+entorno_tranquilo :- baja_multitud, ruido_bajo [0.8].  
+baja_multitud :- seguridad_alta [0.9].  
+seguridad_alta :- servicios_eficientes [0.95].  
+
+destino_cultural :- actividad_cultural, guias_expertos, atracciones_populares [0.95].  
+actividad_cultural :- historia, eventos_locales [0.85].  
+historia :- arquitectura, reliquias_historicas [0.9].  
+arquitectura :- tradiciones_locales [0.8].  
+tradiciones_locales :- conocimientos_orales [0.75].  
 
 # Actividades
-actividad_extrema :- escalada, rafting, parapente, clima_apropiado [0.8]
-actividad_cultural :- museos, arquitectura, historia [0.9]
-actividad_relajante :- spa, yoga, naturaleza [0.85]
-actividad_familiar :- parques_tematicos, senderismo_familiar, naturaleza [0.8]
-actividad_nocturna :- vida_nocturna, eventos_locales [0.7]
+actividad_extrema :- rafting, escalada, ciclismo_de_montaña [0.8].  
+rafting :- guia_experto, equipo_seguridad [0.85].  
+guia_experto :- entrenamiento_avanzado [0.9].  
+entrenamiento_avanzado :- certificacion, experiencia [0.9].  
+certificacion :- experiencia [0.95].  
+
+actividad_relajante :- yoga, spa, naturaleza [0.85].  
+yoga :- naturaleza, meditacion [0.8].  
+naturaleza :- biodiversidad_protegida, aire_puro [0.9].  
+biodiversidad_protegida :- reservas_naturales [0.9].  
+reservas_naturales :- proteccion_ambiental [0.95].  
+
+actividad_familiar :- senderismo_familiar, rutas_seguras, entretenimiento_infantil [0.8].  
+senderismo_familiar :- rutas_seguras, mapas_detallados [0.9].  
+rutas_seguras :- mapas_detallados, senalizacion_efectiva [0.85].  
+mapas_detallados :- senalizacion_efectiva [0.9].  
+senalizacion_efectiva :- mantenimiento_constante [0.95].  
+
+actividad_nocturna :- vida_nocturna, oferta_gastronomica, entretenimiento_local [0.7].  
+vida_nocturna :- eventos_locales, cultura_urbana [0.8].  
+eventos_locales :- cultura_urbana, festivales [0.85].  
+cultura_urbana :- oferta_gastronomica [0.9].  
+oferta_gastronomica :- mercados_locales [0.95].  
 
 # Recomendaciones
-viajar_en_temporada_baja :- ahorro_costos, baja_multitud [0.85]
-reservar_con_anticipacion :- evitar_sobrecosto, disponibilidad_garantizada [0.95]
-llevar_equipamiento :- destino_aventura, clima_extremo, escalada [0.8]
-buscar_guias_locales :- actividad_cultural, destinos_desconocidos, idioma_local [0.9]
-proteger_documentos :- viajar_internacional, pasaporte, visas [0.9]
+viajar_en_temporada_baja :- ahorro_costos, baja_multitud, promociones [0.85].  
+ahorro_costos :- disponibilidad_hotelera, precios_reducidos [0.9].  
+disponibilidad_hotelera :- demanda_baja, destinos_alternativos [0.8].  
+demanda_baja :- menor_turismo [0.85].  
+menor_turismo :- destinos_alternativos [0.9].  
 
-# Cadenas
-clima_calido :- baja_lluvia, sol_constante [0.9]
-playa :- arena_blanca, clima_calido, actividades_acuaticas [0.8]
-montaña :- naturaleza, clima_frio, actividades_invernales [0.85]
-baja_multitud :- temporada_baja, evitar_turismo_masivo [0.8]
-alta_demanda :- temporada_verano, promociones, destinos_populares [0.75]
-
-# Detalles de cadenas complejas
-sol_constante :- estacion_seca, alta_temperatura [0.9]
-arena_blanca :- formacion_geologica, limpieza_regular [0.85]
-actividades_acuaticas :- snorkeling, kayak, natacion [0.8]
-naturaleza :- fauna_rica, paisajes_unicos, biodiversidad_protegida [0.85]
-entorno_tranquilo :- aislamiento, ruido_bajo, seguridad_alta [0.9]
-
-# Hechos adicionales
-estacion_seca [0.9]
-alta_temperatura [0.85]
-formacion_geologica [0.8]
-limpieza_regular [0.75]
-fauna_rica [0.8]
-paisajes_unicos [0.85]
-biodiversidad_protegida [0.9]
-temporada_baja [0.85]
-destinos_populares [0.8]
+reservar_con_anticipacion :- evitar_sobrecosto, fechas_especificas, descuentos [0.95].  
+evitar_sobrecosto :- promociones, tarifas_reducidas [0.85].  
+promociones :- tarifas_reducidas, paquetes_especiales [0.9].  
+tarifas_reducidas :- fechas_especificas [0.8].  
+fechas_especificas :- planificacion_previa [0.9].  
