@@ -1,13 +1,15 @@
-#base_conocimiento.py
+# base_conocimiento.py
 from pathlib import Path
 from reglas import Regla
 
+
 class BaseConocimiento:
     """
-    Construcción de la clase BaseConocimiento y sus atributos que son 
+    Construcción de la clase BaseConocimiento y sus atributos que son
     lista de reglas y diccionarios de grados de certezas. Incluye la función de la carga del archivo,
     la función de imprimir la base de conocimiento y la funciónn para agregar un hecho a la base.
     """
+
     def __init__(self):
         self.reglas = []  # Lista de reglas
         self.hechos = {}  # Diccionario de hechos con su grado de certeza

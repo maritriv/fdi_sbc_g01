@@ -1,7 +1,6 @@
 # motor_inferencia.py
 
 
-
 class MotorInferencia:
     """
     Construcción de la clase MotorInferencia y sus atributos. También se definen
@@ -9,6 +8,7 @@ class MotorInferencia:
     y la función principal de backward_chain que realiza todo el algoritmo de encadenamiento hacia atrás.
 
     """
+
     def __init__(self, base):
         self.base = base  # Base de conocimientos
         self.reglas_aplicadas = set()  # Para evitar ciclos de reglas
