@@ -2,7 +2,7 @@
 
 ## Actividades Físicas
 entrenamiento_intenso :- actividad_cardio, fortalecimiento_muscular [0.9].
-entrenamiento_moderado :- caminata, yoga [0.85].
+entrenamiento_moderado :- caminata, yoga, estiramientos, actividad_cardio [0.85].
 entrenamiento_ligero :- estiramientos, caminata [0.8].
 
 ## Recomendaciones de Actividad
