@@ -17,7 +17,11 @@ class MotorInferencia:
     def backward_chain(self, consulta, nivel=0):
         # Evaluación de una consulta y construcción del árbol de razonamiento.
         if consulta in self.base.hechos:
-            return self.base.hechos[consulta], {"consulta": consulta, "grado": self.base.hechos[consulta], "antecedentes": []}
+            return self.base.hechos[consulta], {
+                "consulta": consulta,
+                "grado": self.base.hechos[consulta],
+                "antecedentes": [],
+            }
 
         if consulta in self.reglas_aplicadas:
             return None, {"consulta": consulta, "grado": None, "antecedentes": []}
@@ -41,11 +45,13 @@ class MotorInferencia:
 
                 if len(grados_antecedentes) == len(regla.antecedentes):
                     grado_regla = self.and_difuso(*grados_antecedentes) * regla.grado
-                    arbol["antecedentes"].append({
-                        "regla": str(regla),
-                        "grado_regla": grado_regla,
-                        "antecedentes": sub_arboles
-                    })
+                    arbol["antecedentes"].append(
+                        {
+                            "regla": str(regla),
+                            "grado_regla": grado_regla,
+                            "antecedentes": sub_arboles,
+                        }
+                    )
 
                     if grado_acumulado is None:
                         grado_acumulado = grado_regla
