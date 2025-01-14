@@ -21,11 +21,13 @@ def main(filepath):
         elif consulta.endswith("?"):  # Comando para hacer una consulta
             consulta = consulta.rstrip("?")
             print("\n")
-            resultado = motor.backward_chain(consulta)
-            if resultado is None:
-                print("\n")
+            resultado, arbol = motor.backward_chain(consulta)
+            if resultado is not None:
+                print(f"Resultado: Sí, con grado {round(resultado, 2)}")
+                print("\nÁrbol de razonamiento:")
+                motor.mostrar_arbol(arbol)
             else:
-                print(f"Sí, con grado de certeza {round(resultado, 2)}")
+                print("No se pudo resolver la consulta.")
 
         elif consulta.startswith("add "):  # Comando para agregar hechos
             try:

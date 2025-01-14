@@ -1,87 +1,66 @@
-# motor_inferencia.py
-
-
 class MotorInferencia:
     """
-    Construcción de la clase MotorInferencia y sus atributos. También se definen
-    las funciones and_difuso para el mínimo valor, or_difuso utilizando la fórmula de inclusión-exclusión
-    y la función principal de backward_chain que realiza todo el algoritmo de encadenamiento hacia atrás.
-
+    Motor de inferencia con razonamiento difuso y construcción de un árbol
+    que muestra cómo se llegó a la respuesta.
     """
 
     def __init__(self, base):
-        self.base = base  # Base de conocimientos
-        self.reglas_aplicadas = set()  # Para evitar ciclos de reglas
+        self.base = base
+        self.reglas_aplicadas = set()
 
     def and_difuso(self, *grados):
-        # Operador AND difuso utilizando el mínimo valor.
         return min(grados)
 
     def or_difuso(self, grado1, grado2):
-        # Operador OR difuso utilizando la fórmula de inclusión-exclusión.
         return grado1 + grado2 - (grado1 * grado2)
 
     def backward_chain(self, consulta, nivel=0):
-        # Encadenamiento hacia atrás para deducir si una consulta es verdadera.
-        print(f"{'  ' * nivel}Evaluando: {consulta}")
-
-        # Si la consulta es un hecho conocido
+        # Evaluación de una consulta y construcción del árbol de razonamiento.
         if consulta in self.base.hechos:
-            print(
-                f"{'  ' * nivel}Hecho encontrado: {consulta} con grado {self.base.hechos[consulta]}",
-                "\n",
-            )
-            return self.base.hechos[consulta]
+            return self.base.hechos[consulta], {"consulta": consulta, "grado": self.base.hechos[consulta], "antecedentes": []}
 
-        # Verificar si ya hemos aplicado una regla para esta consulta
         if consulta in self.reglas_aplicadas:
-            print(f"{'  ' * nivel}Ciclo detectado en: {consulta}. Omitiendo...")
-            return None
+            return None, {"consulta": consulta, "grado": None, "antecedentes": []}
 
-        # Marcar la consulta como aplicada
         self.reglas_aplicadas.add(consulta)
-        grado_acumulado = None  # Para acumular el grado de certeza
+        grado_acumulado = None
+        arbol = {"consulta": consulta, "grado": None, "antecedentes": []}
 
-        # Buscar reglas que concluyan en la consulta
         for regla in self.base.reglas:
             if regla.cons == consulta:
-                print(f"{'  ' * nivel}Regla encontrada: {regla}", "\n")
                 grados_antecedentes = []
+                sub_arboles = []
 
-                # Evaluar los antecedentes de la regla
                 for antecedente in regla.antecedentes:
-                    print(f"{'  ' * nivel}Evaluando antecedente: {antecedente}")
-                    resultado = self.backward_chain(antecedente, nivel + 1)
+                    resultado, sub_arbol = self.backward_chain(antecedente, nivel + 1)
+                    sub_arboles.append(sub_arbol)
+
                     if resultado is None:
-                        print(
-                            f"{'  ' * nivel}No se pudo resolver el antecedente: {antecedente}",
-                            "\n",
-                        )
                         break
                     grados_antecedentes.append(resultado)
-                else:
-                    # Calcular el grado de certeza de la regla usando AND difuso
-                    grado_regla = self.and_difuso(*grados_antecedentes) * regla.grado
-                    print(
-                        f"{'  ' * nivel}Grado final para {consulta} con esta regla: {round(grado_regla, 2)}"
-                    )
 
-                    # Acumular el grado usando OR difuso
+                if len(grados_antecedentes) == len(regla.antecedentes):
+                    grado_regla = self.and_difuso(*grados_antecedentes) * regla.grado
+                    arbol["antecedentes"].append({
+                        "regla": str(regla),
+                        "grado_regla": grado_regla,
+                        "antecedentes": sub_arboles
+                    })
+
                     if grado_acumulado is None:
                         grado_acumulado = grado_regla
                     else:
                         grado_acumulado = self.or_difuso(grado_acumulado, grado_regla)
 
-        # Retornar el grado acumulado si se encontró algún resultado
-        if grado_acumulado is not None:
-            print(
-                f"{'  ' * nivel}Grado acumulado para {consulta}: {round(grado_acumulado, 2)}",
-                "\n",
-            )
-            self.reglas_aplicadas.remove(consulta)
-            return grado_acumulado
-
-        # Si no se encuentra una regla o hecho para la consulta
-        print(f"{'  ' * nivel}No se encontró una regla o hecho para: {consulta}")
+        arbol["grado"] = grado_acumulado
         self.reglas_aplicadas.remove(consulta)
-        return None
+        return grado_acumulado, arbol
+
+    def mostrar_arbol(self, arbol, nivel=0):
+        # Imprime el árbol de razonamiento en formato jerárquico.
+        indent = "  " * nivel
+        print(f"{indent}{arbol['consulta']} (grado: {arbol['grado']})")
+        for antecedente in arbol.get("antecedentes", []):
+            print(f"{indent}  Usando regla: {antecedente['regla']}")
+            for sub_arbol in antecedente["antecedentes"]:
+                self.mostrar_arbol(sub_arbol, nivel + 2)
